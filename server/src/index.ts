@@ -9,6 +9,7 @@ import {Server} from 'http'
 // import {secret} from './jwt'
 import UserController from './controllers/User'
 import User from './entities/User'
+import EventController from './controllers/Event';
 
 const app = new Koa()
 const server = new Server(app.callback())
@@ -18,7 +19,8 @@ const port = process.env.PORT || 4000
 useKoaServer(app, {
   cors: true,
   controllers: [
-    UserController
+    UserController,
+    EventController
   ],
   authorizationChecker: (action: Action) => {
     const header: string = action.request.headers.authorization

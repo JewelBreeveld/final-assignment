@@ -14,9 +14,9 @@ export default class UserController {
     //@Authorized()
     @Get('/users/:id([0-9]+)')
     getUser(
-      @Param('id') id: number
-    ) {
-      return User.findOneById(id)
+        @Param('id') id: number
+    )   {
+        return User.findOneById(id)
     }
 
     //create a new user
