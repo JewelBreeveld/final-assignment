@@ -1,20 +1,27 @@
 import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { Exclude } from "class-transformer";
 
+
 @Entity()
-export default class Ticket extends BaseEntity {
+export default class Event extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    id?: number
+    id?: number;
 
+    @Column('text', {nullable: false})
+    name: string
+    
     @Column('text', {nullable: false})
     description: string
 
-    @Column('integer', {nullable: false})
-    price: number
-
     @Column('text', {nullable: true})
-    picture: string
+    urlPictureLogo: string
+
+    @Column('date', {nullable: false})
+    startDate: string
+
+    @Column('date', {nullable: false})
+    endDate: string
 
     @Exclude()
     @CreateDateColumn({ type: 'timestamp' })
@@ -22,6 +29,9 @@ export default class Ticket extends BaseEntity {
 
     @Exclude()
     @UpdateDateColumn({ type: "timestamp" })
-    updatedAt: Date;
+    updatedOn: Date
 
-}
+  
+}  
+
+
