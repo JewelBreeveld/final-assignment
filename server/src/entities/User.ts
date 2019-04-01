@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt'
 
 @Entity()
 export default class User extends BaseEntity {
+    
     @PrimaryGeneratedColumn()
     id?: number
 
