@@ -1,11 +1,15 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from "typeorm"; // ,OneToMany
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { IsString, MinLength, IsEmail } from "class-validator";
 import { Exclude } from "class-transformer";
 import * as bcrypt from 'bcrypt'
+import Ticket from "./Ticket";
+import Comment from './Comment'
+import Event from './Event'
 
 
 @Entity()
 export default class User extends BaseEntity {
+
     @PrimaryGeneratedColumn()
     id?: number
 
@@ -42,4 +46,13 @@ export default class User extends BaseEntity {
     // http://typeorm.io/#/many-to-one-one-to-many-relations
     //   @OneToMany(_ => Player, player => player.user) 
     //   players: Player[]
+
+    @OneToMany(_=> Ticket, ticket=> ticket.user)
+    tickets: Ticket[]
+
+    @OneToMany(_=> Comment, comment=> comment.user)
+    comments: Comment[]
+
+    @OneToMany(_=> Event, event=> event.user)
+    events: Event[]
 }

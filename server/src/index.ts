@@ -4,11 +4,14 @@ import setupDb from './db'
 import { verify } from './jwt'
 import * as Koa from 'koa'
 import {Server} from 'http'
-//import * as IO from 'socket.io'
+// import * as IO from 'socket.io'
 // import * as socketIoJwtAuth from 'socketio-jwt-auth'
 // import {secret} from './jwt'
-import UserController from './controllers/User'
 import User from './entities/User'
+import UserController from './controllers/User'
+import EventController from './controllers/Event';
+import CommentController from './controllers/Comment';
+import TicketController from './controllers/Ticket';
 
 const app = new Koa()
 const server = new Server(app.callback())
@@ -18,7 +21,10 @@ const port = process.env.PORT || 4000
 useKoaServer(app, {
   cors: true,
   controllers: [
-    UserController
+    UserController,
+    TicketController,
+    CommentController,
+    EventController
   ],
   authorizationChecker: (action: Action) => {
     const header: string = action.request.headers.authorization
@@ -35,6 +41,7 @@ useKoaServer(app, {
 
     return false
   },
+  
   currentUserChecker: async (action: Action) => {
     const header: string = action.request.headers.authorization
     if (header && header.startsWith('Bearer ')) {
