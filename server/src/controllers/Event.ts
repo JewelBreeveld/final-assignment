@@ -6,27 +6,32 @@ import User from "../entities/User";
 export default class EventController {
 
     @Get('/events')
-    allEvents() {
-        return Event.find()
+    async allEvents() {
+        const event = await Event.find()
+        return { event }
     }
 
-    @Get('/events/:id([0-9]+)')
-    getEvent(
-        @Param('id') id: number
+    @Get('/events/:eventId([0-9]+)')
+    async getEvent(
+        @Param('eventId') id: number
     )   {
-        return Event.findOneById(id)
+        const event = await Event.findOneById(id)
+        return event
     }
 
     @Post('/events')
     @HttpCode(201)
     async createEvent(@CurrentUser() user: User, @Body() data: Event){
+        console.log(user, "user")
         const { name, description, urlPictureLogo, startDate, endDate } = data
         const event = await Event.create({
                         name, 
                         description, 
                         urlPictureLogo, 
                         startDate, 
-                        endDate}).save()
+                        endDate,
+                        user}).save() // user does not post => user is undefined 
+                        console.log(user, "user")
         return event
     } 
 }
