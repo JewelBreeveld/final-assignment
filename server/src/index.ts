@@ -4,7 +4,7 @@ import setupDb from './db'
 import { verify } from './jwt'
 import * as Koa from 'koa'
 import {Server} from 'http'
-//import * as IO from 'socket.io'
+// import * as IO from 'socket.io'
 // import * as socketIoJwtAuth from 'socketio-jwt-auth'
 // import {secret} from './jwt'
 import User from './entities/User'
@@ -41,6 +41,7 @@ useKoaServer(app, {
 
     return false
   },
+  
   currentUserChecker: async (action: Action) => {
     const header: string = action.request.headers.authorization
     if (header && header.startsWith('Bearer ')) {
