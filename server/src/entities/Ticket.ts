@@ -1,5 +1,8 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, OneToMany } from "typeorm";
 import { Exclude } from "class-transformer";
+import User from './User';
+import Comment from './Comment'
+import Event from './Event'
 
 @Entity()
 export default class Ticket extends BaseEntity {
@@ -22,6 +25,18 @@ export default class Ticket extends BaseEntity {
 
     @Exclude()
     @UpdateDateColumn({ type: "timestamp" })
-    updatedAt: Date;
+    updatedOn: Date;
+
+    @ManyToOne(_ => User, author => author.tickets)
+    user: User
+
+    @OneToMany(_=> Comment, comment => comment.ticket)
+    comments: Comment
+
+    @ManyToOne(_=> Event, event => event.tickets)
+    event: Event
+
+    
+    
 
 }
