@@ -22,4 +22,4 @@ export const getTickets = () => (dispatch, getState) => {
       .set('Authorization', `Bearer ${jwt}`)
       .then(result => dispatch(updateTickets(result.body)))
       .catch(err => console.error(err))
-  }
+}
