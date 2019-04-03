@@ -3,14 +3,14 @@ import {baseUrl} from '../constants'
 import {logout} from './users'
 import {isExpired} from '../jwt'
 
-export const UPDATE_TICKETS = 'UPDATE_TICKETS'
+export const UPDATE_EVENTS = 'UPDATE_EVENTS'
 
-const updateTickets = tickets => ({
-    type: UPDATE_TICKETS,
-    payload: tickets
+const updateEvents = events => ({
+    type: UPDATE_EVENTS,
+    payload: events
 })
 
-export const getTickets = () => (dispatch, getState) => {
+export const getEvents = () => (dispatch, getState) => {
     const state = getState()
     if (!state.currentUser) return null
     const jwt = state.currentUser.jwt
@@ -18,8 +18,8 @@ export const getTickets = () => (dispatch, getState) => {
     if (isExpired(jwt)) return dispatch(logout())
   
     request
-      .get(`${baseUrl}/tickets`)
+      .get(`${baseUrl}/events`)
       .set('Authorization', `Bearer ${jwt}`)
-      .then(result => dispatch(updateTickets(result.body)))
+      .then(result => dispatch(updateEvents(result.body)))
       .catch(err => console.error(err))
 }

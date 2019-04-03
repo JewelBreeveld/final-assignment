@@ -1,0 +1,19 @@
+.outer-paper {
+    margin: auto;
+    margin-top: 20px;
+    padding: 20px;
+    width: 80%;
+  }
+
+.event-card {
+    margin: 20px;
+    
+}
+
+.image {
+    width: 100px
+}
+
+.view-tickets {
+    margin: 10px
+}

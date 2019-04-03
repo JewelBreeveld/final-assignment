@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import './GamesList.css'
 
 class GamesList extends PureComponent {
+  
   componentWillMount() {
     if (this.props.authenticated) {
       if (this.props.games === null) this.props.getGames()
@@ -82,3 +83,40 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, {getGames, getUsers, createGame})(GamesList)
+
+// renderEvent () {
+//   const {event, users } = this.props // history
+
+//   return (
+//       <Card key={event.id} className="event-card">
+//       <CardContent>
+//           {/* <Typography color="textSecondary">
+//           This event is created by&nbsp;
+//           {
+//               events.user
+//               .map( () => users[events.userId].firstName)
+//           }
+//           </Typography> */}
+
+//           <Typography variant="headline" component="h2">
+//           Event {event.name}
+//           </Typography>
+//           <Typography color="textSecondary">
+//           Description {event.description}
+//           </Typography>
+//           <Typography color="textSecondary">
+//           Date {event.startDate} - {event.endDate}
+//           </Typography>
+
+// </CardContent>
+// <CardActions>
+//   {/* <Button
+//     size="small"
+//     onClick={() => history.push(`/games/${game.id}`)}
+//   >
+//     Watch
+//   </Button> */}
+// </CardActions>
+// </Card>
+//   )
+// }
