@@ -1,17 +1,18 @@
 import 'reflect-metadata'
-import { Action, BadRequestError, useKoaServer } from 'routing-controllers'
+import { Action, BadRequestError, useKoaServer } from 'routing-controllers' //useKoaServer // createKoaServer
 import setupDb from './db'
 import { verify } from './jwt'
 import * as Koa from 'koa'
 import {Server} from 'http'
-// import * as IO from 'socket.io'
-// import * as socketIoJwtAuth from 'socketio-jwt-auth'
-// import {secret} from './jwt'
 import User from './entities/User'
 import UserController from './controllers/User'
 import EventController from './controllers/Event';
 import CommentController from './controllers/Comment';
 import TicketController from './controllers/Ticket';
+
+// import * as IO from 'socket.io'
+// import * as socketIoJwtAuth from 'socketio-jwt-auth'
+//import {secret} from './jwt'
 
 const app = new Koa()
 const server = new Server(app.callback())
