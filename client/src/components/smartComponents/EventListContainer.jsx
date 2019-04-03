@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import EventList from '../funcComponents/EventList'
 import { getEvents } from '../../actions/events'
 import Button from '@material-ui/core/Button'
@@ -15,7 +15,7 @@ class EventsListContainer extends PureComponent {
     }
 
     render() {
-    console.log('eventcontainer', this.props.events)
+    //console.log('eventcontainer', this.props.events)
     const {events, authenticated, createEvent} = this.props
 
     if (!authenticated) return ( <Redirect to="/login" /> )

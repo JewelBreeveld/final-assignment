@@ -8,7 +8,7 @@ import '../../styles/Event.css'
 export default function EventList(props) {
   console.log('fc eventlist props', props)
   return(
-    <div className='event-div'>
+    <div className='events-div'>
       {props.events.event.map(event => {
         return <Card key={event.id} className='event-card'>
                 <img src={event.urlPictureLogo} alt='logo' className='image'/>

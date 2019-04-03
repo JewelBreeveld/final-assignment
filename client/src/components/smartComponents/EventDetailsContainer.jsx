@@ -1,35 +1,39 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { getTickets } from '../../actions/tickets'
-import { getUsers } from '../../actions/users'
-
+import { Redirect } from 'react-router-dom'
+import EventDetails from '../funcComponents/EventDetails'
+import TicketContainer from './TicketContainer'
+import { getEvent } from '../../actions/events'
+import Paper from '@material-ui/core/Paper'
 
 class EventDetailsContainer extends PureComponent {
 
-    componentWillMount() {
-        if(this.props.authenticated) {
-            if (this.props.tickets === null) this.props.getTickets() // getGames
-            if (this.props.users === null) this.props.getUsers()
-        }
-    }
+    state = { editMode: false }
 
-    renderTickets () {
-
+    componentDidMount() {
+        const eventId = this.props.match.params.id
+        this.props.getEvent(Number(eventId))
     }
 
     render() {
-        return(
-            <div>
-                <p>Hello</p>
-            </div>
+        console.log('eventdetails container', this.props.event)
+
+        const {event, authenticated} = this.props
+        if (!authenticated) return ( <Redirect to="/login" /> )
+
+        if(!event) return 'Loading...'
+
+        return(<Paper className='outer-paper'>
+                <div>
+                    <EventDetails event={this.props.event}/>
+                </div>
+            </Paper>
         )
     }
 }
-
 const mapStateToProps = state => ({
     authenticated: state.currentUser !== null,
-    users: state.users === null ? null : state.users,
-    tickets: state.tickets === null ? null : Object.values(state.tickets).sort((a, b) => b.id - a.id)
+    event: state.events
 })
 
-export default connect(mapStateToProps, {getTickets, getUsers})(EventDetailsContainer) //, createGame
+export default connect(mapStateToProps, { getEvent })(EventDetailsContainer)
