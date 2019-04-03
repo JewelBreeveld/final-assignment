@@ -3,8 +3,6 @@ import ReduxThunk from 'redux-thunk'
 import reducers from './reducers'
 import {storeJwt} from './middleware' //, socketIo
 //import SocketIO from './socketio'
-// import { createStore } from 'redux'
-// import reducer from './reducer'
 
 const reducer = combineReducers(reducers)
 

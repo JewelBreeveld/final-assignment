@@ -1,5 +1,16 @@
-import { JsonController, Get, Param, Post, Body } from "routing-controllers"; //, Authorized
+import { JsonController, Get, Param, Post, Body, BadRequestError } from "routing-controllers"; //, Authorized
 import User from "../entities/User";
+//import { IsString } from "class-validator";
+import { sign } from "../jwt";
+
+// class Authentication {
+
+//   @IsString()
+//   email: string
+
+//   @IsString()
+//   password: string
+// }
 
 @JsonController()
 export default class UserController {
@@ -30,5 +41,25 @@ export default class UserController {
 
     const user = await entity.save()
     return user
+  }
+
+  @Post('/logins')
+  async login(
+    @Body() data
+  ) {
+    
+    const { email, password } = data
+
+    const entity = await User.findOne({email})
+    console.log('entity', entity)
+    console.log('data', data)
+
+    if (!entity) throw new BadRequestError('This user does not exist')
+
+    const passwordCheck = await entity.checkPassword(password)
+    if(!passwordCheck) throw new BadRequestError('This email/password is not valid')
+
+    const jwt = sign({id: entity.id!})
+    return { jwt }
   }
 }
