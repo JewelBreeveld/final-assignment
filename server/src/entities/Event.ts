@@ -16,7 +16,7 @@ export default class Event extends BaseEntity {
     @Column('text', {nullable: false})
     description: string
 
-    @Column('text', {nullable: true})
+    @Column('text', {default: 'http://www.logohut.in/wp-content/uploads/2016/11/EVENT-TICKET-LOGO-200026-600x351.jpg'})
     urlPictureLogo: string
 
     @Column('date', {nullable: false})

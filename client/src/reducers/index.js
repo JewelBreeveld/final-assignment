@@ -1,4 +1,3 @@
-import tickets from './events'
 import events from './events'
 import users from './users'
 import login from './login'
@@ -7,7 +6,6 @@ import signup from './signup'
 
 export default {
   events,
-  tickets,
   users,
   login,
   currentUser,

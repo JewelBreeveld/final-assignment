@@ -7,16 +7,18 @@ import '../../styles/Event.css'
 
 export default function EventList(props) {
   //console.log('fc eventlist props', props)
+  
   return(
     <div className='events-div'>
       {props.events.event.map(event => {
         return <Card key={event.id} className='event-card'>
                 <img src={event.urlPictureLogo} alt='logo' className='image'/>
-                        <Typography> Name: {event.name} </Typography>
-                        <Typography> Description: {event.description} </Typography>
-                        <Typography> Startdate: {event.startDate} </Typography>
-                        <Typography> Enddate: {event.endDate} </Typography>
-                        <Fab    variant="extended" 
+                        <Typography style={{margin: 10}}> Name: {event.name} </Typography>
+                        <Typography style={{margin: 10}}> Description: {event.description} </Typography>
+                        <Typography style={{margin: 10}}> Startdate: {event.startDate} </Typography>
+                        <Typography style={{margin: 10}}> Enddate: {event.endDate} </Typography>
+                        <Fab    variant="extended"
+                                style={{margin: 10}} 
                                 size='small'
                                 className='view-tickets' 
                                 component={Link} 
