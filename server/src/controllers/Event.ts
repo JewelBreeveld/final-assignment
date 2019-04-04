@@ -1,4 +1,4 @@
-import { JsonController, Authorized, Get, Param, Post, Body, HttpCode, CurrentUser } from "routing-controllers";
+import { JsonController, Authorized, Get, Param, Post, Body, HttpCode, CurrentUser, Put } from "routing-controllers";
 import Event from "../entities/Event";
 import User from "../entities/User";
 
@@ -7,7 +7,8 @@ export default class EventController {
 
     @Get('/events')
     async allEvents() {
-        const event = await Event.find({skip: 0, take:10})
+        const event = await Event.find({skip: 0, take:9})
+        //const today = new Date().toISOString().split('T')[0]
         return { event }
     }
 
@@ -19,7 +20,7 @@ export default class EventController {
         return event
     }
 
-    @Post('/events')
+    @Post('/events/create')
     @HttpCode(201)
     async createEvent(@CurrentUser() user: User, @Body() data: Event){
         console.log(user, "user")

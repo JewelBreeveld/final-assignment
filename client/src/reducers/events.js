@@ -5,7 +5,8 @@ import { UPDATE_EVENTS, UPDATE_EVENT, CREATE_EVENT } from '../actions/events'
 export default (state = null, {type, payload}) => {
     switch(type) {
         case UPDATE_EVENTS:
-        //console.log("payload all events", payload)
+        console.log("payload all events", payload)
+        console.log("type all events", type)
         return payload
 
         case UPDATE_EVENT: 

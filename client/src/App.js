@@ -6,6 +6,7 @@ import LogoutPage from './components/logout/LogoutPage'
 import TopBar from './components/layout/TopBar'
 import EventListContainer from './components/smartComponents/EventListContainer'
 import EventDetailsContainer from './components/smartComponents/EventDetailsContainer'
+import EventFormContainer from './components/smartComponents/EventFormContainer'
 
 //<Route exact path="/games" component={GamesList} />
 //<Route exact path="/games/:id" component={GameDetails} />
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path="/logout" component={LogoutPage} />
             <Route exact path="/events" component={EventListContainer} />
             <Route exact path="/events/:id/tickets" component={EventDetailsContainer} />
+            <Route exact path="/events/create" component={EventFormContainer} />
             <Route exact path="/" render={ () => <Redirect to="/events" /> } />
           </main>
         </div>
