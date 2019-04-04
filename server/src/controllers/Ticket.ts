@@ -1,4 +1,4 @@
-import { JsonController, Get, Param, BadRequestError, CurrentUser, Body, Post, HttpCode, Put, Params } from "routing-controllers";
+import { JsonController, Get, Param, BadRequestError, CurrentUser, Body, Post, HttpCode, Put, Params, Authorized } from "routing-controllers";
 import Ticket from "../entities/Ticket";
 import Event from "../entities/Event";
 import User from "../entities/User";
@@ -20,9 +20,8 @@ export default class TicketController {
             return event
         }
 
-
     //post a ticket to sell
-    //@Authorized()
+    @Authorized()
     @Post('/events/:eventId/tickets/create')
     @HttpCode(201)
     async createTicketSale(
@@ -50,25 +49,15 @@ export default class TicketController {
     @Put('/events/:eventId/tickets/:ticketId')
     async updateTicketSale(
         @Param('ticketId') ticketId: number,
-        //@CurrentUser() user: User,
+        @CurrentUser() user: User,
         @Body() update: Partial<Ticket>
     )   {
 
         const ticket = await Ticket.findOneById(ticketId)
         if(!ticket) throw new BadRequestError('Ticket does not exist')
-        //if(ticket.user.id !== user.id) throw new BadRequestError('You can only update your own tickets')
+        if(ticket.user.id !== user.id) throw new BadRequestError('You can only update your own tickets')
         return Ticket.merge(ticket, update).save()
     }
-
-    //get details for one ticket
-    // @Get('/events/:eventId/tickets/:ticketId')
-    // async getTicketDetails(
-    //     @Param('ticketId') ticketId: number
-    // )   {
-    //     const ticket = await Ticket.findOneById(ticketId, {relations: ['event', 'comments', 'comments.user']})
-    //     if(!ticket) throw new BadRequestError('Event does not exist')
-    //     return ticket
-    // }
 
     @Get('/events/:eventId/tickets/:ticketId')
     async getTicketDetails(

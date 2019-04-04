@@ -10,7 +10,7 @@ const updateTickets = payload => ({
     payload: payload.tickets
 })
 
-export const getTickets = (eventId) => (dispatch, getState) => {
+export const getTickets = (eventId) => (dispatch) => {
   
     request
       .get(`${baseUrl}/events/${eventId}/tickets`)

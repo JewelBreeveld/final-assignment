@@ -1,7 +1,8 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import User from './User';
 import Ticket from './Ticket';
 import Event from './Event'
+import { Exclude } from "class-transformer";
 
 @Entity()
 export default class Comment extends BaseEntity {
@@ -10,7 +11,15 @@ export default class Comment extends BaseEntity {
     id?: number
 
     @Column('text', { nullable: false })
-    input: string;
+    comment: string;
+
+    @Exclude()
+    @CreateDateColumn({ type: 'timestamp' })
+    createdOn: Date
+
+    @Exclude()
+    @UpdateDateColumn({ type: 'timestamp' })
+    updatedOn: Date
 
     @ManyToOne(_ => User, user => user.comments)
     user: User;
