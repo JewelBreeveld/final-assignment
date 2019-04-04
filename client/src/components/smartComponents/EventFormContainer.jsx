@@ -8,9 +8,9 @@ class CreateEventFormContainer extends React.Component {
     formValues: {
         name: '',
         description: '',
-        picture: '',
-        startdate: '',
-        enddate: ''
+        pictureUrl: '',
+        startDate: '',
+        endDate: ''
     }
   }
 
@@ -24,13 +24,12 @@ class CreateEventFormContainer extends React.Component {
   }
 
   onSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault(event)
     this.setState({
-        formValues: {
-            
-        }
+        formValues: this.state.formValues
     })
-    this.props.addEvent(this.state)
+    this.props.addEvent(this.state.formValues)
+    this.props.history.push('/events')
   }
 
   render() {
@@ -38,7 +37,7 @@ class CreateEventFormContainer extends React.Component {
     return (<EventForm
       onSubmit={this.onSubmit}
       onChange={this.onChange}
-      values={this.state}
+      values={this.state.formValues}
     />)
   }
 }

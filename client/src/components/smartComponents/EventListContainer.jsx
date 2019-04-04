@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+//import { Redirect } from 'react-router-dom'
 import EventList from '../funcComponents/EventList'
 import { getEvents } from '../../actions/events'
-import Button from '@material-ui/core/Button'
+//import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import '../../styles/Event.css'
 import Fab from '@material-ui/core/Fab'
 import { Link } from 'react-router-dom'
-import EventForm from '../funcComponents/EventForm'
+//import EventForm from '../funcComponents/EventForm'
 
 class EventsListContainer extends PureComponent {
 
@@ -22,7 +22,7 @@ class EventsListContainer extends PureComponent {
     render() {
     console.log('eventcontainer props', this.props)
     
-    const {events, authenticated} = this.props //createEvent
+    const {events} = this.props //createEvent, authenticated,
 
     //if (!authenticated) return ( <Redirect to="/login" /> )
 
@@ -31,6 +31,7 @@ class EventsListContainer extends PureComponent {
             <Paper className='outer-paper'>
                 <Fab variant="extended" 
                                 size='small'
+                                style={{margin: 20}} 
                                 className='create-new-event' 
                                 component={Link} 
                                 to={`/events/create`}>

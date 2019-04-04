@@ -38,7 +38,8 @@ const createEvent = event => ({
     payload: event
 })
 
-export const addEvent = event => (dispatch, getState) => {
+export const addEvent = (data) => (dispatch, getState) => {
+    console.log('addevent action data',data)
     const state = getState();
     const jwt = state.currentUser.jwt;
   
@@ -47,7 +48,7 @@ export const addEvent = event => (dispatch, getState) => {
     request
       .post(`${baseUrl}/events/create`)
       .set('Authorization', `Bearer ${jwt}`)
-      .send(event)
+      .send(data)
       .then(res => dispatch(createEvent(res.body)))
       .catch(err => console.error(err))
 }

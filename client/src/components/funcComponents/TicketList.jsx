@@ -1,31 +1,25 @@
-import React, { PureComponent } from 'react' //React,
-import { connect } from 'react-redux'
-//import { Redirect } from 'react-router-dom'
-import { getTickets } from '../../actions/tickets'
-import Paper from '@material-ui/core/Paper'
+import * as React from 'react'
+import Card from '@material-ui/core/Card' //{ CardActions, CardContent } 
+import Typography from '@material-ui/core/Typography'
+import Fab from '@material-ui/core/Fab'
+import { Link } from 'react-router-dom'
+import '../../styles/Event.css'
+import { type } from 'os';
 
-class TicketContainer extends PureComponent {
+export default function TicketList(props) {
+    console.log('ticketscontainer props', props.ticket.tickets)
 
-    componentDidMount() {
-        const eventId = this.props.event.id
-        this.props.getTickets(eventId)
-    }
-    
-    render() {
-        console.log('ticketscontainer props', this.props)
-        return (
-            <Paper>
-                hello
-            </Paper>
-        )
-    }
+    if(!props.ticket.tickets) return 'Loading ...'
+    return (
+        <div className='tickets-div'>
+        {props.ticket.tickets.map(ticket => {
+            return <Card key={ticket.id} className='ticket-card'>
+            <Typography style={{margin: 10}}>{ticket.picture}</Typography>
+            <Typography style={{margin: 10}}>{ticket.price}</Typography>
+            <Typography style={{margin: 10}}>{ticket.description}</Typography>
+            <Typography style={{margin: 10}}>{ticket.risk}</Typography>
+            </Card>
+        })}
+        </div>
+    )
 }
-
-const mapStateToProps = state => ({
-    authenticated: state.currentUser !== null,
-    event: state.events,
-    tickets: state.tickets
-    
-})
-
-export default connect(mapStateToProps, { getTickets })(TicketContainer)

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+//import { Redirect } from 'react-router-dom'
 import EventDetails from '../funcComponents/EventDetails'
 import TicketList from '../funcComponents/TicketList'
 import { getEvent } from '../../actions/events'
@@ -19,15 +19,12 @@ class EventDetailsContainer extends PureComponent {
     render() {
         console.log('eventdetails container props', this.props.event)
 
-        const {event} = this.props //authenticated
-        //if (!authenticated) return ( <Redirect to="/login" /> )
-
-        if(!event) return 'Loading...'
-
+        const {event} = this.props 
+        if(!event) return 'Loading ... '
         return(<Paper className='outer-paper'>
                 <div>
-                    <EventDetails event={this.props.event}/>
-                    <TicketList ticket={this.props.event}/>
+                    <EventDetails event={event}/>
+                    <TicketList ticket={event}/>
                 </div>
             </Paper>
         )

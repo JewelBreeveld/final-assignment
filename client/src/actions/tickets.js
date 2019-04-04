@@ -1,7 +1,7 @@
 import * as request from 'superagent'
 import {baseUrl} from '../constants'
-import {logout} from './users'
-import {isExpired} from '../jwt'
+//import {logout} from './users'
+//import {isExpired} from '../jwt'
 
 export const UPDATE_TICKETS = 'UPDATE_TICKETS'
 
