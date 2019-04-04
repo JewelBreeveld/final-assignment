@@ -11,7 +11,7 @@ import { Redirect } from 'react-router-dom'
 
 const TopBar = (props) => {
   const { location, history, user } = props
-
+  console.log('topbar', props.user)
   return (
     <AppBar position="absolute" style={{zIndex:10}}>
       <Toolbar>

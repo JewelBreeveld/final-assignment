@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { addEvent } from '../../actions/events'
 import EventForm from '../funcComponents/EventForm'
 
-class CreateEventFormContainer extends React.Component {
+class EventFormContainer extends React.Component {
   state = {
     formValues: {
         name: '',
@@ -33,7 +33,7 @@ class CreateEventFormContainer extends React.Component {
   }
 
   render() {
-    //console.log('eventlistcontainer', this.state)
+    console.log('eventlistcontainer', this.props)
     return (<EventForm
       onSubmit={this.onSubmit}
       onChange={this.onChange}
@@ -42,4 +42,4 @@ class CreateEventFormContainer extends React.Component {
   }
 }
 
-export default connect(null, { addEvent })(CreateEventFormContainer)
+export default connect(null, { addEvent })(EventFormContainer)

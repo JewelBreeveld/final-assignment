@@ -18,7 +18,7 @@ class EventsListContainer extends PureComponent {
     }
 
     render() {
-    console.log('eventcontainer props', this.props)
+    console.log('eventlistcontainer props', this.props)
     
     const {events} = this.props //createEvent, authenticated,
 
@@ -54,5 +54,3 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, { getEvents, getUsers })(EventsListContainer)
-
-//import EventForm from '../smartComponents/EventForm'

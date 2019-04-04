@@ -6,7 +6,7 @@ import { getEvent } from '../../actions/events'
 import { getUsers } from '../../actions/users'
 import Paper from '@material-ui/core/Paper'
 
-class EventDetailsContainer extends PureComponent {
+class TicketListContainer extends PureComponent {
 
     state = { editMode: false }
 
@@ -16,7 +16,7 @@ class EventDetailsContainer extends PureComponent {
     }
 
     render() {
-        console.log('eventdetails container props', this.props)
+        console.log('ticketlistcontainer props', this.props)
 
         const { events, currentUser } = this.props 
         if(!events) return 'Loading ... '
@@ -37,4 +37,4 @@ const mapStateToProps = state => ({
     userId: state.currentUser && userId(state.currentUser.jwt)
 })
 
-export default connect(mapStateToProps, { getEvent, getUsers })(EventDetailsContainer)
+export default connect(mapStateToProps, { getEvent, getUsers })(TicketListContainer)
