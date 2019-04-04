@@ -35,9 +35,9 @@ class TicketFormContainer extends React.Component {
           formValues: this.state.formValues
       })
       this.props.addTicket(this.state.formValues)
-      this.props.history.push(`/events/${this.props.event.id}/tickets`)
+      this.props.history.goBack()
     }
-  
+
     render() {
       console.log('ticketformcontainer', this.props)
       return (<TicketForm
@@ -45,6 +45,7 @@ class TicketFormContainer extends React.Component {
         onChange={this.onChange}
         values={this.state.formValues}
         event={this.props.event}
+
       />)
     }
   }

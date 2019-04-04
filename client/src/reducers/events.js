@@ -14,7 +14,9 @@ export default (state = null, {type, payload}) => {
         return payload
 
         case CREATE_EVENT:
-        //console.log('payload create event', payload)
+        console.log('payload create event', payload)
+        console.log('state create event', state.event)
+        //still needs some work, state = object, state.event = array of objects
         return [...state, payload]
 
         default:
