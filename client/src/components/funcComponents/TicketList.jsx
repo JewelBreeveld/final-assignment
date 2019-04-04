@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import '../../styles/Event.css'
 
 export default function TicketList(props) {
-    console.log('ticketscontainer props', props)
+    console.log('ticketslist props', props)
 
     if(!props.event.tickets) return 'Loading ...'
     return (<div>
@@ -21,7 +21,7 @@ export default function TicketList(props) {
                                 size='small'
                                 className='view-tickets' 
                                 component={Link} 
-                                to={`/events/${props.event.id}/tickets`}>
+                                to={`/events/${props.event.id}/tickets/create`}>
                                 Sell tickets
                     </Fab>
                 </Card>

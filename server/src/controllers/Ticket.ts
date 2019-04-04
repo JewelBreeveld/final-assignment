@@ -32,16 +32,16 @@ export default class TicketController {
 
     //post a ticket to sell
     //@Authorized()
-    @Post('/events/:eventId/tickets')
+    @Post('/events/:eventId/tickets/create')
     @HttpCode(201)
     async createTicketSale(
         @Param('eventId') eventId: number, 
         @CurrentUser() user: User, 
         @Body() data: Ticket
         ) {
-        //console.log(user, 'user')
+        console.log(user, 'user')
         const event = await Event.findOneById(eventId)
-        //console.log(event, 'event')
+        console.log(event, 'event')
         if(!event) throw new BadRequestError('Event does not exist')
         
         const { description, price, picture } = data

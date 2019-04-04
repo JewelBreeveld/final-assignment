@@ -5,13 +5,9 @@ import SignupPage from './components/signup/SignupPage'
 import LogoutPage from './components/logout/LogoutPage'
 import TopBar from './components/layout/TopBar'
 import EventListContainer from './components/smartComponents/EventListContainer'
-import EventDetailsContainer from './components/smartComponents/EventDetailsContainer'
+import TicketListContainer from './components/smartComponents/TicketListContainer'
 import EventFormContainer from './components/smartComponents/EventFormContainer'
-
-//<Route exact path="/games" component={GamesList} />
-//<Route exact path="/games/:id" component={GameDetails} />
-//<Route exact path="/" render={ () => <Redirect to="/games" /> } />
-//<Route exact path="/tickets" component={TicketList} />
+import TicketFormContainer from './components/smartComponents/TicketFormContainer'
 
 class App extends Component {
   render() {
@@ -26,8 +22,9 @@ class App extends Component {
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/logout" component={LogoutPage} />
             <Route exact path="/events" component={EventListContainer} />
-            <Route exact path="/events/:id/tickets" component={EventDetailsContainer} />
+            <Route exact path="/events/:id/tickets" component={TicketListContainer} />
             <Route exact path="/events/create" component={EventFormContainer} />
+            <Route exact path="/events/:id/tickets/create" component={TicketFormContainer} />
             <Route exact path="/" render={ () => <Redirect to="/events" /> } />
           </main>
         </div>

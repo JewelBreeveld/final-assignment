@@ -1,7 +1,7 @@
 import * as request from 'superagent'
 import {baseUrl} from '../constants'
-//import {logout} from './users'
-//import {isExpired} from '../jwt'
+import {logout} from './users'
+import {isExpired} from '../jwt'
 
 export const UPDATE_TICKETS = 'UPDATE_TICKETS'
 
@@ -11,12 +11,6 @@ const updateTickets = payload => ({
 })
 
 export const getTickets = (eventId) => (dispatch, getState) => {
-    //console.log(eventId, '!!!!!')
-    // const state = getState()
-    // console.log('get tickets action ... state', state)
-    // if (!state.currentUser) return null
-    // const jwt = state.currentUser.jwt
-    // if (isExpired(jwt)) return dispatch(logout())
   
     request
       .get(`${baseUrl}/events/${eventId}/tickets`)
@@ -26,18 +20,28 @@ export const getTickets = (eventId) => (dispatch, getState) => {
 }
 
 
-// {"id":1,
-// "name":"feestje",
-// "description":"het leukste feestje van nederland",
-// "urlPictureLogo":"http://www.logohut.in/wp-content/uploads/2016/11/EVENT-TICKET-LOGO-200026-600x351.jpg",
-// "startDate":"2019-04-21",
-// "endDate":"2019-04-22",
-// "tickets":[
-//     {"id":2,"description":"because i got ill","price":90,"picture":""},
-//     {"id":1,"description":"for sale because we bought too much tickets","price":100,"picture":""},
-//     {"id":4,"description":"for sale because we bought too much tickets","price":100,"picture":""},
-//     {"id":5,"description":"for sale because we bought too much tickets","price":100,"picture":""},
-//     {"id":6,"description":"for sale because we bought too much tickets","price":100,"picture":""},
-//     {"id":7,"description":"for sale because we bought too much tickets","price":100,"picture":""},
-//     {"id":8,"description":"for sale because we bought too much tickets","price":100,"picture":""},
-//     {"id":3,"description":"for sale because we bought too much tickets","price":88,"picture":""}]}
+export const SELL_TICKET = 'SELL_TICKET'
+
+const sellTicket = event => ({
+    type: SELL_TICKET,
+    payload: event
+})
+
+export const addTicket = (data) => (dispatch, getState) => {
+    console.log('addticket action data',data)
+    const state = getState();
+    const jwt = state.currentUser.jwt;
+  
+    if (isExpired(jwt)) return dispatch(logout())
+  
+    request
+      .post(`${baseUrl}/events/${data.eventId}/tickets/create`)
+      .set('Authorization', `Bearer ${jwt}`)
+      .send(data)
+      .then(res => {
+          console.log(res.body)
+          dispatch(sellTicket(res.body))
+      })
+      .catch(err => console.error(err))
+}
+
