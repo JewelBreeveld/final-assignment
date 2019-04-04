@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-//import { Redirect } from 'react-router-dom'
+import {userId} from '../../jwt'
 import EventList from '../funcComponents/EventList'
 import { getEvents } from '../../actions/events'
-//import Button from '@material-ui/core/Button'
+import { getUsers } from '../../actions/users'
 import Paper from '@material-ui/core/Paper'
 import '../../styles/Event.css'
 import Fab from '@material-ui/core/Fab'
@@ -13,10 +13,8 @@ import { Link } from 'react-router-dom'
 class EventsListContainer extends PureComponent {
 
     componentDidMount() {
-        // if(this.props.authenticated) {
-        //     if(this.props.events === null) this.props.getEvents()
-        // }
         this.props.getEvents()
+        this.props.getUsers()
     }
 
     render() {
@@ -48,9 +46,13 @@ class EventsListContainer extends PureComponent {
 
 const mapStateToProps = state => ({
     authenticated: state.currentUser !== null,
-    events: state.events
+    events: state.events,
+    users: state.users,
+    currentUser: state.currentUser,
+    userId: state.currentUser && userId(state.currentUser.jwt)
+    
 })
 
-export default connect(mapStateToProps, { getEvents })(EventsListContainer)
+export default connect(mapStateToProps, { getEvents, getUsers })(EventsListContainer)
 
 //import EventForm from '../smartComponents/EventForm'

@@ -23,10 +23,8 @@ export default (state = null, {type, payload}) => {
       }
 
     case UPDATE_USERS:
-      return payload.reduce((users, user) => {
-        users[user.id] = user
-        return users
-      }, {})
+    console.log(payload.users, 'payload reducer user')
+      return payload.users
 
     default:
       return state

@@ -15,7 +15,7 @@ export default class TicketController {
     async getEventTickets(
         @Param('eventId') eventId: number
         )   {
-            const event = await Event.findOneById(eventId, {relations: ['tickets']})
+            const event = await Event.findOneById(eventId, {relations: ['tickets', 'tickets.userId']})
             if(!event) throw new BadRequestError('Event does not exist')
             return event
         }
