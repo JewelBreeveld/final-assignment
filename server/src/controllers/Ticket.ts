@@ -1,7 +1,10 @@
-import { JsonController, Get, Param, BadRequestError, CurrentUser, Body, Post, HttpCode, Put } from "routing-controllers";
+import { JsonController, Get, Param, BadRequestError, CurrentUser, Body, Post, HttpCode, Put, Params } from "routing-controllers";
 import Ticket from "../entities/Ticket";
 import Event from "../entities/Event";
 import User from "../entities/User";
+import Comment from "../entities/Comment"
+import { getRepository } from "typeorm";
+import calculateTicketRisk from '../calculation/calculateTicketRisk'
 
 @JsonController()
 export default class TicketController {
@@ -12,18 +15,17 @@ export default class TicketController {
     async getEventTickets(
         @Param('eventId') eventId: number
         )   {
-            const event = await Event.findOneById(eventId)
+            const event = await Event.findOneById(eventId, {relations: ['tickets']})
             if(!event) throw new BadRequestError('Event does not exist')
-            const tickets = await Ticket.find()
-            return { tickets }
+            return event
         }
-    
+       
     //get details for one ticket
     @Get('/events/:eventId/tickets/:ticketId')
     async getTicketDetails(
         @Param('ticketId') ticketId: number
     )   {
-        const ticket = await Ticket.findOneById(ticketId)
+        const ticket = await Ticket.findOneById(ticketId, {relations: ['event', 'comments', 'comments.user']})
         if(!ticket) throw new BadRequestError('Event does not exist')
         return ticket
     }
@@ -42,7 +44,6 @@ export default class TicketController {
         //console.log(event, 'event')
         if(!event) throw new BadRequestError('Event does not exist')
         
-
         const { description, price, picture } = data
         const ticket = await Ticket.create({
                         description,
@@ -67,6 +68,45 @@ export default class TicketController {
         //if(ticket.user.id !== user.id) throw new BadRequestError('You can only update your own tickets')
         return Ticket.merge(ticket, update).save()
     }
+
+    @Get('/events/:eventId/tickets/:ticketId')
+    async getTicketRisk(
+        @Params() params,
+    ) {
+        const {ticketId, eventId} = params
+        const ticket = await Ticket.findOneById(ticketId, {relations: ['user']})
+        if(!ticket) throw new BadRequestError('Ticket does not exist')
+
+        const numOfTickets = await getRepository(Ticket)
+                    .createQueryBuilder('ticket')
+                    .select('COUNT(user_id) AS count')
+                    .where('user_id = :id', { id: ticket.user.id })
+                    .getRawOne()
+
+        const avgPrice = await getRepository(Ticket)
+                    .createQueryBuilder('ticket')
+                    .select('AVG(price) AS average')
+                    .where('event_id = :id', {id: eventId})
+                    .getRawOne()
+
+        const hoursOfTicketAdd = ticket.createdOn.getHours() //number
+        
+        const numOfComments = await getRepository(Comment)
+                    .createQueryBuilder('comment')
+                    .select('COUNT(ticket_id) AS count')
+                    .where('ticket_id = :id', { id: ticketId })
+                    .getRawOne()
+
+        return calculateTicketRisk(
+            numOfTickets.count,
+            avgPrice.average,
+            hoursOfTicketAdd,
+            numOfComments,
+            ticket.price
+        )
+
+    }
 }
+
 
  

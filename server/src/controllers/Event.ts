@@ -7,7 +7,7 @@ export default class EventController {
 
     @Get('/events')
     async allEvents() {
-        const event = await Event.find()
+        const event = await Event.find({skip: 0, take:10})
         return { event }
     }
 

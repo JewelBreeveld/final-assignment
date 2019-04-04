@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import '../../styles/Event.css'
 
 export default function EventList(props) {
-  console.log('fc eventlist props', props)
+  //console.log('fc eventlist props', props)
   return(
     <div className='events-div'>
       {props.events.event.map(event => {
