@@ -18,7 +18,22 @@ export const getTickets = (eventId) => (dispatch, getState) => {
       .then(result => dispatch(updateTickets(result.body)))
       .catch(err => console.error(err))
 }
+//////////////
 
+export const GET_TICKET = 'GET_TICKET'
+
+const updateTicket = payload => ({
+    type: GET_TICKET,
+    payload: payload.ticket
+})
+
+export const getTicket = (eventId, ticketId) => (dispatch) => {
+    request
+    .get(`${baseUrl}/events/${eventId}/tickets/${ticketId}`)
+    .then(result => dispatch(updateTicket(result.body)))
+    .catch(err => console.error(err))
+}
+//////////////
 
 export const SELL_TICKET = 'SELL_TICKET'
 
@@ -39,9 +54,9 @@ export const addTicket = (data) => (dispatch, getState) => {
       .set('Authorization', `Bearer ${jwt}`)
       .send(data)
       .then(res => {
-          console.log(res.body)
+          console.log('res dot body',res.body)
           dispatch(sellTicket(res.body))
       })
       .catch(err => console.error(err))
 }
-
+//////////////

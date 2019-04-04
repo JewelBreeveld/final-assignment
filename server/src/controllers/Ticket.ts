@@ -15,20 +15,11 @@ export default class TicketController {
     async getEventTickets(
         @Param('eventId') eventId: number
         )   {
-            const event = await Event.findOneById(eventId, {relations: ['tickets', 'tickets.userId']})
+            const event = await Event.findOneById(eventId)
             if(!event) throw new BadRequestError('Event does not exist')
             return event
         }
-       
-    //get details for one ticket
-    @Get('/events/:eventId/tickets/:ticketId')
-    async getTicketDetails(
-        @Param('ticketId') ticketId: number
-    )   {
-        const ticket = await Ticket.findOneById(ticketId, {relations: ['event', 'comments', 'comments.user']})
-        if(!ticket) throw new BadRequestError('Event does not exist')
-        return ticket
-    }
+
 
     //post a ticket to sell
     //@Authorized()
@@ -69,12 +60,22 @@ export default class TicketController {
         return Ticket.merge(ticket, update).save()
     }
 
+    //get details for one ticket
+    // @Get('/events/:eventId/tickets/:ticketId')
+    // async getTicketDetails(
+    //     @Param('ticketId') ticketId: number
+    // )   {
+    //     const ticket = await Ticket.findOneById(ticketId, {relations: ['event', 'comments', 'comments.user']})
+    //     if(!ticket) throw new BadRequestError('Event does not exist')
+    //     return ticket
+    // }
+
     @Get('/events/:eventId/tickets/:ticketId')
-    async getTicketRisk(
+    async getTicketDetails(
         @Params() params,
     ) {
         const {ticketId, eventId} = params
-        const ticket = await Ticket.findOneById(ticketId, {relations: ['user']})
+        const ticket = await Ticket.findOneById(ticketId)
         if(!ticket) throw new BadRequestError('Ticket does not exist')
 
         const numOfTickets = await getRepository(Ticket)
@@ -97,13 +98,16 @@ export default class TicketController {
                     .where('ticket_id = :id', { id: ticketId })
                     .getRawOne()
 
-        return calculateTicketRisk(
+        const calculateRisk = calculateTicketRisk(
             numOfTickets.count,
             avgPrice.average,
             hoursOfTicketAdd,
             numOfComments,
             ticket.price
         )
+
+        const allDetails = {...ticket, calculateRisk}
+        return allDetails
 
     }
 }

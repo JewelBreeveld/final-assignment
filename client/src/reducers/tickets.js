@@ -3,7 +3,7 @@ import { UPDATE_TICKETS } from '../actions/tickets'
 export default (state = null, {type, payload}) => {
     switch(type) {
         case UPDATE_TICKETS:
-        console.log("payload all tickets", action.payload)
+        console.log("payload all tickets", payload)
         return {
             ...state,
             [payload.tickets]: payload

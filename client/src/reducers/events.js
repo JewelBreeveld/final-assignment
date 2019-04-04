@@ -14,9 +14,9 @@ export default (state = null, {type, payload}) => {
         return payload
 
         case CREATE_EVENT:
-        // console.log('payload create event, payload)
+        //console.log('payload create event', payload)
         return [...state, payload]
-        
+
         default:
         return state
     }

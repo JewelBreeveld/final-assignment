@@ -22,19 +22,19 @@ class TicketListContainer extends PureComponent {
         if(!events) return 'Loading ... '
         return(<Paper className='outer-paper'>
                 <div>
-                    <TicketList event={events} userId={currentUser && userId(currentUser.jwt)}/>
+                    <TicketList event={events} /> 
                 </div>
             </Paper>
         )
     }
 }
-
+//userId={currentUser && userId(currentUser.jwt)}
 const mapStateToProps = state => ({
     authenticated: state.currentUser !== null,
     events: state.events,
     users: state.users,
     currentUser: state.currentUser,
-    userId: state.currentUser && userId(state.currentUser.jwt)
+    // userId: state.currentUser && userId(state.currentUser.jwt)
 })
 
 export default connect(mapStateToProps, { getEvent, getUsers })(TicketListContainer)

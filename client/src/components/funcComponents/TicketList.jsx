@@ -31,7 +31,7 @@ export default function TicketList(props) {
                             <Typography style={{margin: 10}}>{ticket.picture}</Typography>
                             <Typography style={{margin: 10}}>{ticket.price}</Typography>
                             <Typography style={{margin: 10}}>{ticket.description}</Typography>
-                            <Typography style={{margin: 10}}>{ticket.risk}</Typography>
+                            <Typography style={{margin: 10}}>{ticket.calculateRisk}</Typography>
                             </Card>
                     })} 
         </div>
