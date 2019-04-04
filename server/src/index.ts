@@ -10,13 +10,8 @@ import EventController from './controllers/Event';
 import CommentController from './controllers/Comment';
 import TicketController from './controllers/Ticket';
 
-// import * as IO from 'socket.io'
-// import * as socketIoJwtAuth from 'socketio-jwt-auth'
-//import {secret} from './jwt'
-
 const app = new Koa()
 const server = new Server(app.callback())
-//export const io = IO(server)
 const port = process.env.PORT || 4000
 
 useKoaServer(app, {
@@ -56,21 +51,6 @@ useKoaServer(app, {
     return undefined
   }
 })
-
-// io.use(socketIoJwtAuth.authenticate({ secret }, async (payload, done) => {
-//   const user = await User.findOneById(payload.id)
-//   if (user) done(null, user)
-//   else done(null, false, `Invalid JWT user ID`)
-// }))
-
-// io.on('connect', socket => {
-//   const name = socket.request.user.firstName
-//   console.log(`User ${name} just connected`)
-
-//   socket.on('disconnect', () => {
-//     console.log(`User ${name} just disconnected`)
-//   })
-// })
 
 setupDb()
   .then(_ => {

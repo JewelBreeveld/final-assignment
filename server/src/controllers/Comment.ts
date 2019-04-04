@@ -34,7 +34,7 @@ export default class CommentController {
             event,
             user
           }).save();
-          console.log(comment, "comment")
+          //console.log(comment, "comment")
           return comment;
     }
 

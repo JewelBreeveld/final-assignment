@@ -1,4 +1,4 @@
-import { UPDATE_EVENTS, UPDATE_EVENT } from '../actions/events'
+import { UPDATE_EVENTS, UPDATE_EVENT, CREATE_EVENT } from '../actions/events'
 //import { USER_LOGOUT } from '../actions/users'
 
 
@@ -11,6 +11,10 @@ export default (state = null, {type, payload}) => {
         case UPDATE_EVENT: 
         //console.log('payload 1 event',payload)
         return payload
+
+        case CREATE_EVENT:
+        // console.log('payload create event, payload)
+        return [...state, payload]
         
         default:
         return state

@@ -2,8 +2,9 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import EventDetails from '../funcComponents/EventDetails'
-import TicketContainer from './TicketContainer'
+import TicketList from '../funcComponents/TicketList'
 import { getEvent } from '../../actions/events'
+import { getTickets } from '../../actions/tickets'
 import Paper from '@material-ui/core/Paper'
 
 class EventDetailsContainer extends PureComponent {
@@ -16,24 +17,27 @@ class EventDetailsContainer extends PureComponent {
     }
 
     render() {
-        console.log('eventdetails container', this.props.event)
+        console.log('eventdetails container props', this.props)
 
-        const {event, authenticated} = this.props
-        if (!authenticated) return ( <Redirect to="/login" /> )
+        const {event} = this.props //authenticated
+        //if (!authenticated) return ( <Redirect to="/login" /> )
 
         if(!event) return 'Loading...'
 
         return(<Paper className='outer-paper'>
                 <div>
                     <EventDetails event={this.props.event}/>
+                    <TicketList ticket={this.props.ticket}/>
                 </div>
             </Paper>
         )
     }
 }
+
 const mapStateToProps = state => ({
     authenticated: state.currentUser !== null,
-    event: state.events
+    event: state.events,
+    tickets: state.event
 })
 
-export default connect(mapStateToProps, { getEvent })(EventDetailsContainer)
+export default connect(mapStateToProps, { getEvent, getTickets })(EventDetailsContainer)

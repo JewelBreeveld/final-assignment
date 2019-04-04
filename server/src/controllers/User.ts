@@ -17,7 +17,7 @@ export default class UserController {
 
   //@Authorized()
   @Get('/users')
-  async allUsers() {
+  async getUsers() {
     const users = await User.find()
     return { users }
   }
@@ -51,9 +51,6 @@ export default class UserController {
     const { email, password } = data
 
     const entity = await User.findOne({email})
-    console.log('entity', entity)
-    console.log('data', data)
-
     if (!entity) throw new BadRequestError('This user does not exist')
 
     const passwordCheck = await entity.checkPassword(password)

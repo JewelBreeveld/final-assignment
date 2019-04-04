@@ -35,8 +35,4 @@ export default class Ticket extends BaseEntity {
 
     @ManyToOne(_=> Event, event => event.tickets)
     event: Event
-
-    
-    
-
 }

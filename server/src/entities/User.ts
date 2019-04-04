@@ -1,4 +1,4 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn } from "typeorm";
 import { IsString, MinLength, IsEmail } from "class-validator";
 import { Exclude } from "class-transformer";
 import * as bcrypt from 'bcrypt'
@@ -32,6 +32,10 @@ export default class User extends BaseEntity {
     @Column('text')
     @Exclude({ toPlainOnly: true })
     password: string
+
+    @Exclude()
+    @CreateDateColumn({ type: 'timestamp' })
+    createdOn: Date
 
     async setPassword(rawPassword: string) {
         const hash = await bcrypt.hash(rawPassword, 10)

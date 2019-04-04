@@ -40,7 +40,7 @@ export default class Event extends BaseEntity {
     comments: Comment
 
     @OneToMany(_=> Ticket, ticket=> ticket.event)
-    tickets: Ticket
+    tickets: Ticket[]
 }  
-
+    
 
