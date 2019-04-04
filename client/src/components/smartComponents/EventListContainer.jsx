@@ -6,7 +6,9 @@ import { getEvents } from '../../actions/events'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import '../../styles/Event.css'
-//import EventForm from '../funcComponents/EventForm'
+import Fab from '@material-ui/core/Fab'
+import { Link } from 'react-router-dom'
+import EventForm from '../funcComponents/EventForm'
 
 class EventsListContainer extends PureComponent {
 
@@ -16,8 +18,6 @@ class EventsListContainer extends PureComponent {
         // }
         this.props.getEvents()
     }
-
-
 
     render() {
     console.log('eventcontainer props', this.props)
@@ -29,9 +29,13 @@ class EventsListContainer extends PureComponent {
     if(!events) return 'Loading...'
         return (
             <Paper className='outer-paper'>
-                {/* <Button color="primary" variant="contained" className="create-game" >
-                        Create new Event
-                </Button> */}
+                <Fab variant="extended" 
+                                size='small'
+                                className='create-new-event' 
+                                component={Link} 
+                                to={`/events/create`}>
+                                Create new Event
+                </Fab>
                 {/* {authenticated ? <EventForm /> : 'You need to log in to create an event'} */}
                 <div>
                     <EventList events={events} />

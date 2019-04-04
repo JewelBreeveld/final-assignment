@@ -33,6 +33,9 @@ export default class Ticket extends BaseEntity {
     @OneToMany(_=> Comment, comment => comment.ticket)
     comments: Comment
 
-    @ManyToOne(_=> Event, event => event.tickets)
+    @ManyToOne(_=> Event, event => event.tickets, {nullable: false})
     event: Event
+
+    @Column('integer', {nullable: true})
+    risk: number
 }

@@ -17,7 +17,7 @@ class EventDetailsContainer extends PureComponent {
     }
 
     render() {
-        console.log('eventdetails container props', this.props)
+        console.log('eventdetails container props', this.props.event)
 
         const {event} = this.props //authenticated
         //if (!authenticated) return ( <Redirect to="/login" /> )
@@ -27,7 +27,7 @@ class EventDetailsContainer extends PureComponent {
         return(<Paper className='outer-paper'>
                 <div>
                     <EventDetails event={this.props.event}/>
-                    <TicketList ticket={this.props.ticket}/>
+                    <TicketList ticket={this.props.event}/>
                 </div>
             </Paper>
         )
