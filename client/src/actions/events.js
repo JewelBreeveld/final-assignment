@@ -39,6 +39,9 @@ const createEvent = event => ({
 })
 
 export const addEvent = (data) => (dispatch, getState) => {
+
+    //if(!jwt) return alert('log in first')
+
     console.log('addevent action data',data)
     const state = getState();
     const jwt = state.currentUser.jwt;

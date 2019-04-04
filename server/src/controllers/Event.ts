@@ -7,7 +7,10 @@ export default class EventController {
 
     @Get('/events')
     async allEvents() {
-        const event = await Event.find({skip: 0, take:9})
+        const event = await Event.find({order: {
+                                        startDate: "ASC"},
+                                        skip: 0, 
+                                        take:9})
         //const today = new Date().toISOString().split('T')[0]
         return { event }
     }

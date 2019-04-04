@@ -7,11 +7,10 @@ import {withRouter} from 'react-router'
 import {userId} from '../../jwt'
 import {connect} from 'react-redux'
 import AccountIcon from '@material-ui/icons/AccountBox'
-import { Redirect } from 'react-router-dom'
 
 const TopBar = (props) => {
-  const { location, history, user } = props
-  console.log('topbar', props.user)
+  const { history, user } = props
+  console.log('topbar', props)
   return (
     <AppBar position="absolute" style={{zIndex:10}}>
       <Toolbar>
@@ -23,19 +22,18 @@ const TopBar = (props) => {
           <Button color="inherit"><AccountIcon /> { user.firstName }</Button>
         }
 
-        {
+        { !user &&
           <Button color="inherit" onClick={() => history.push('/login')}>Login</Button>
         }
         
-        {
-          location.pathname.indexOf('login') > 0 &&
+        { !user &&
           <Button color="inherit" onClick={() => history.push('/signup')}>Sign up</Button>
         }
-        {
+        { 
           <Button color="inherit" onClick={() => history.push('/events')}> Events</Button>
         }
-        {
-          <Button color="inherit" onClick={ () => <Redirect to="/login" /> }>Log out</Button>
+        { 
+          <Button color="inherit" onClick={ () => history.push('/logout')}>Log out</Button>
         }
       </Toolbar>
     </AppBar>

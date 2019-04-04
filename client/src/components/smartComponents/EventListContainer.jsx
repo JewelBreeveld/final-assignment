@@ -8,6 +8,7 @@ import Paper from '@material-ui/core/Paper'
 import '../../styles/Event.css'
 import Fab from '@material-ui/core/Fab'
 import { Link } from 'react-router-dom'
+import Card from '@material-ui/core/Card'
 //import EventForm from '../funcComponents/EventForm'
 
 class EventsListContainer extends PureComponent {
@@ -20,13 +21,15 @@ class EventsListContainer extends PureComponent {
     render() {
     console.log('eventlistcontainer props', this.props)
     
-    const {events} = this.props //createEvent, authenticated,
+    const {events, currentUser} = this.props //createEvent, authenticated,
 
     //if (!authenticated) return ( <Redirect to="/login" /> )
 
     if(!events) return 'Loading...'
         return (
             <Paper className='outer-paper'>
+                <Card>
+                {!currentUser ? Fab.disabled=true && 'Log in to create an event' : 
                 <Fab variant="extended" 
                                 size='small'
                                 style={{margin: 20}} 
@@ -34,7 +37,8 @@ class EventsListContainer extends PureComponent {
                                 component={Link} 
                                 to={`/events/create`}>
                                 Create new Event
-                </Fab>
+        </Fab> }
+                </Card>
                 {/* {authenticated ? <EventForm /> : 'You need to log in to create an event'} */}
                 <div>
                     <EventList events={events} />
