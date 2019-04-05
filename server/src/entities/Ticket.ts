@@ -16,7 +16,7 @@ export default class Ticket extends BaseEntity {
     @Column('integer', {nullable: false})
     price: number
 
-    @Column('text', {nullable: true})
+    @Column('text', {nullable: true, default: 'https://sitejerk.com/images/tickets-transparent-3.png'})
     picture: string
 
     @Exclude()

@@ -15,8 +15,8 @@ export default (state = null, {type, payload}) => {
 
         case CREATE_EVENT:
         console.log('payload create event', payload)
-        console.log('state create event', state.event)
-        //still needs some work, state = object, state.event = array of objects
+        console.log('state create event', state)
+        //still needs some work, state = object, state.event = array of objects, error still unsolved
         return [...state, payload]
 
         default:

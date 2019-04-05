@@ -11,7 +11,8 @@ export default (state = null, {type, payload}) => {
 
         case SELL_TICKET: 
         console.log('payload 1 ticket',payload)
-        return payload
+        console.log('user payload', payload.user)
+        return {...state, payload}
         
         default:
         return state

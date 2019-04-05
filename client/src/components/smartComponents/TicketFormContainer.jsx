@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { addTicket } from '../../actions/tickets'
 import { getEvent } from '../../actions/events'
 import TicketForm from '../funcComponents/TicketForm'
 
-class TicketFormContainer extends React.Component {
+
+class TicketFormContainer extends PureComponent {
     state = {
       formValues: {
           price: '',
@@ -15,10 +16,10 @@ class TicketFormContainer extends React.Component {
       
     }
 
-    componentDidMount() {
-      const eventId = this.props.match.params.id
-      this.props.getEvent(Number(eventId))
-  }
+  //   componentDidMount() {
+  //     // const eventId = this.props.match.params.id
+  //     // this.props.getEvent(Number(eventId))
+  // }
   
     onChange = (event) => {
       this.setState({
@@ -35,18 +36,18 @@ class TicketFormContainer extends React.Component {
           formValues: this.state.formValues
       })
       this.props.addTicket(this.state.formValues)
-      this.props.history.goBack()
+      // this.props.history.goBack()
     }
 
     render() {
       console.log('ticketformcontainer', this.props)
-      return (<TicketForm
+      return (
+        <TicketForm
         onSubmit={this.onSubmit}
         onChange={this.onChange}
         values={this.state.formValues}
-        event={this.props.event}
-
-      />)
+        event={this.props.event}/>
+        )
     }
   }
   
@@ -54,4 +55,4 @@ class TicketFormContainer extends React.Component {
     event: state.events
   })
   
-  export default connect(mapStateToProps, { addTicket, getEvent })(TicketFormContainer)
+  export default connect(mapStateToProps, { addTicket, getEvent})(TicketFormContainer)
