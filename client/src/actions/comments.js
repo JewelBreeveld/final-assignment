@@ -13,7 +13,7 @@ const updateComments = payload => ({
 export const getComments = (eventId, ticketId) => (dispatch) => {
   
     request
-      .get(`${baseUrl}/events/${eventId}/tickets/details`)
+      .get(`${baseUrl}/events/${eventId}/tickets/${ticketId}`)
       .then(res => {
         console.log('get comments res dot body',res.body)
         dispatch(updateComments(res.body))
@@ -38,7 +38,7 @@ export const sendComment = (data) => (dispatch, getState) => {
     if (isExpired(jwt)) return dispatch(logout())
   
     request
-      .post(`${baseUrl}/events/${data.eventId}/tickets/details`)
+      .post(`${baseUrl}/events/${data.eventId}/tickets/${data.ticketId}`)
       .set('Authorization', `Bearer ${jwt}`)
       .send(data)
       .then(res => {

@@ -7,13 +7,13 @@ import Event from '../entities/Event'
 @JsonController()
 export default class CommentController {
 
-    @Get('/events/:eventId/tickets/details')
+    @Get('/events/:eventId/tickets/:ticketId')
     async allComments() {
         const comments = Comment.find()
         return {comments}
     }
 
-    @Post('/events/:eventId/tickets/details')
+    @Post('/events/:eventId/tickets/:ticketId')
     @HttpCode(201)
     async addComment(
         @CurrentUser() user: User, 

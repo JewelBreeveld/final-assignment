@@ -22,12 +22,16 @@ const TopBar = (props) => {
           <Button color="inherit"><AccountIcon /> { user.firstName }</Button>
         }
 
-        { !user &&
-          <Button color="inherit" onClick={() => history.push('/login')}>Login</Button>
+        { user ? 
+          <Button color="inherit" onClick={() => history.push('/login')} disabled={true}>Login</Button>
+          : 
+          <Button color="inherit" onClick={() => history.push('/login')} disabled={false}>Login</Button>
         }
         
-        { !user &&
-          <Button color="inherit" onClick={() => history.push('/signup')}>Sign up</Button>
+        { user ? 
+          <Button color="inherit" onClick={() => history.push('/signup')} disabled={true}>Sign up</Button>
+          :
+          <Button color="inherit" onClick={() => history.push('/signup')} disabled={true}>Sign up</Button>
         }
         { 
           <Button color="inherit" onClick={() => history.push('/events')}> Events</Button>

@@ -22,7 +22,7 @@ export default class TicketController {
 
     //post a ticket to sell
     @Authorized()
-    @Post('/events/:eventId/tickets/create')
+    @Post('/events/:eventId/tickets')
     @HttpCode(201)
     async createTicketSale(
         @Param('eventId') eventId: number, 
@@ -63,14 +63,14 @@ export default class TicketController {
     async getTicketDetails(
         @Params() params,
     ) {
-        const {ticketId, eventId} = params
+        const {ticketId, eventId, userId} = params
         const ticket = await Ticket.findOneById(ticketId)
         if(!ticket) throw new BadRequestError('Ticket does not exist')
 
         const numOfTickets = await getRepository(Ticket)
                     .createQueryBuilder('ticket')
                     .select('COUNT(user_id) AS count')
-                    .where('user_id = :id', { id: ticket.user.id })
+                    .where('user_id = :id', { id: userId })
                     .getRawOne()
 
         const avgPrice = await getRepository(Ticket)
@@ -95,7 +95,7 @@ export default class TicketController {
             ticket.price
         )
 
-        const allDetails = {...ticket, calculateRisk}
+        const allDetails = {...ticket, calculateRisk, eventId, ticketId, userId}
         return allDetails
 
     }

@@ -16,10 +16,10 @@ class TicketFormContainer extends PureComponent {
       
     }
 
-    componentDidMount() {
-      const eventId = this.props.match.params.id
-      this.props.getEvent(Number(eventId))
-  }
+  //   componentDidMount() {
+  //     // const eventId = this.props.match.params.id
+  //     // this.props.getEvent(Number(eventId))
+  // }
   
     onChange = (event) => {
       this.setState({
@@ -36,7 +36,7 @@ class TicketFormContainer extends PureComponent {
           formValues: this.state.formValues
       })
       this.props.addTicket(this.state.formValues)
-      this.props.history.goBack()
+      // this.props.history.goBack()
     }
 
     render() {
