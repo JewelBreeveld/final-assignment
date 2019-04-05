@@ -32,6 +32,9 @@ const addComment = event => ({
 
 export const sendComment = (data) => (dispatch, getState) => {
     console.log('addComment action data',data)
+    // const eventId = state.eventId
+    // const ticketId = state.eventId
+
     const state = getState();
     const jwt = state.currentUser.jwt;
   

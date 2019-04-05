@@ -22,15 +22,16 @@ export default function TicketList(props) {
                     {props.event.tickets.map(ticket => {
                         return  <Card key={ticket.id}>
                                     <Avatar src={ticket.picture} style={{margin: 15}}></Avatar>
-                                    <Typography style={{margin: 10}}>Seller: in progress</Typography>
+                                    <Typography style={{margin: 10}}>Seller: </Typography>
                                     <Typography style={{margin: 10}}>Price: € {ticket.price}</Typography>
                                     <Typography style={{margin: 10}}>Description: {ticket.description}</Typography>
                                     <Typography style={{margin: 10}}>Risk: {ticket.risk}</Typography>
+                                    <Typography >Comments: {ticket.comments.map(comment => comment)} </Typography>
                                     <Fab    variant="extended"
                                             style={{margin: 10}} 
                                             size='small'
                                             className='view-ticket-details' 
-                                            //onClick={()=> getTicket(props.event.id, ticket.id)}
+                                            // onClick={()=> getTicket(props.event.id, ticket.id)}
                                             component={Link} 
                                             to={`/events/${props.event.id}/tickets/${ticket.id}`}
                                             >

@@ -37,22 +37,30 @@ class TicketDetailsContainer extends PureComponent {
     onSubmit = (event) => {
     event.preventDefault(event)
     this.setState({
-        formValues: this.state.formValues
+        formValues: this.state.formValues,
+        eventId: this.props.match.params.id,
+        ticketId: this.props.match.params.ticketId
     })
+    console.log('onSubmitstate',this.state)
     this.props.sendComment(this.state.formValues)
     }
+
+    
 
     render() {
         console.log('TicketDetailsContainer', this.props.ticket)
         const { event, ticket } = this.props
         return (<Paper>
-                    <CommentForm onChange={this.onChange}
-                                values={this.state.formValues}
-                                event={event}
-                                onSubmit={this.onSubmit}/>
-                <Paper>
-                    <CommentList ticket={ticket}/>
-                </Paper>
+                    <Paper>
+                        <CommentForm onChange={this.onChange}
+                                        values={this.state.formValues}
+                                        event={event}
+                                        onSubmit={this.onSubmit}
+                                        ticket={ticket}/>
+                    </Paper>  
+                    <Paper>
+                        <CommentList ticket={ticket}/>
+                    </Paper>
             </Paper>)
     }
     }
@@ -60,7 +68,7 @@ class TicketDetailsContainer extends PureComponent {
     const mapStateToProps = state => ({
       event: state.events,
       ticket: state.tickets,
-      //ticket: state.ticketId,
+      ticketId: state.ticketId,
       eventId: state.eventId
     })
     

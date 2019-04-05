@@ -13,7 +13,7 @@ class TicketListContainer extends PureComponent {
     componentDidMount() {
         const eventId = this.props.match.params.id
         this.props.getEvent(Number(eventId))
-        this.props.getUser(this.props.userId)  
+        this.props.getUser(this.props.userId)
     }
 
     render() {
@@ -24,7 +24,7 @@ class TicketListContainer extends PureComponent {
         return(<Paper className='outer-paper'>
                 <div>
                     <TicketFormContainer />
-                    <TicketList event={events} currentUser={currentUser} user={user} onClick={this.handleOnClick}/>  
+                    <TicketList event={events} currentUser={currentUser} user={user}/>  
                 </div>
             </Paper>
         )
