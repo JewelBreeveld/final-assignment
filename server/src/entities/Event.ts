@@ -33,7 +33,7 @@ export default class Event extends BaseEntity {
     @UpdateDateColumn({ type: 'timestamp' })
     updatedOn: Date
 
-    @ManyToOne(_=> User, user => user.events)
+    @ManyToOne(_=> User, user => user.events, {eager: true})
     user: User
 
     @OneToMany(_=> Comment, comment => comment.event)

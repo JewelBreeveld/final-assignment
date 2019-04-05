@@ -24,13 +24,21 @@ export const GET_TICKET = 'GET_TICKET'
 
 const updateTicket = payload => ({
     type: GET_TICKET,
-    payload: payload.ticket
+    payload: payload
 })
 
 export const getTicket = (eventId, ticketId) => (dispatch) => {
+    
+    console.log(eventId, "action eventid")
+    console.log(ticketId, "action ticketId")
     request
     .get(`${baseUrl}/events/${eventId}/tickets/${ticketId}`)
-    .then(result => dispatch(updateTicket(result.body)))
+    .then(result => {
+        console.log('get ticket res dot body',result.body)
+        dispatch(updateTicket(result.body))
+    }
+        
+        )
     .catch(err => console.error(err))
 }
 //////////////

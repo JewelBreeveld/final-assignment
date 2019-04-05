@@ -16,13 +16,6 @@ class TicketListContainer extends PureComponent {
         this.props.getUser(this.props.userId)  
     }
 
-    // handleOnClick(e) {
-    //     e.preventDefault(e)
-    //     const id = document.getElementsByTagName('Fab').getAttribute('ticket-id')
-    //     //const ticketId = e.currentTarget.value;
-    //     console.log(id, 'onclick ticket id');
-    // }
-
     render() {
         console.log('ticketlistcontainer props', this.props)
 
@@ -48,13 +41,3 @@ const mapStateToProps = state => ({
 
 
 export default connect(mapStateToProps, {getEvent, getUsers, getUser, getTicket})(TicketListContainer)
-
-// {!props.currentUser ? Fab.disabled=true && 'Log in to create a ticketsale' : 
-//                     <Fab    variant="extended" 
-//                                 style={{margin: 20}} 
-//                                 size='small'
-//                                 className='view-tickets' 
-//                                 component={Link} 
-//                                 to={`/events/${props.event.id}/tickets/create`}>
-//                                 Sell tickets
-//                     </Fab>}

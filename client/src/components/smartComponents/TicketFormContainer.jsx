@@ -13,13 +13,7 @@ class TicketFormContainer extends PureComponent {
           picture: '',
           eventId: this.props.event.id
       },
-      
     }
-
-  //   componentDidMount() {
-  //     // const eventId = this.props.match.params.id
-  //     // this.props.getEvent(Number(eventId))
-  // }
   
     onChange = (event) => {
       this.setState({

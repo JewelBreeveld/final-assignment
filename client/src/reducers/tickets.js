@@ -1,4 +1,4 @@
-import { UPDATE_TICKETS, SELL_TICKET } from '../actions/tickets'
+import { UPDATE_TICKETS, SELL_TICKET, GET_TICKET } from '../actions/tickets'
 
 export default (state = null, {type, payload}) => {
     switch(type) {
@@ -13,6 +13,10 @@ export default (state = null, {type, payload}) => {
         console.log('payload 1 ticket',payload)
         console.log('user payload', payload.user)
         return {...state, payload}
+
+        case GET_TICKET: 
+        console.log('payload get ticket', payload )
+        return payload
         
         default:
         return state

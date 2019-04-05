@@ -5,7 +5,6 @@ import Fab from '@material-ui/core/Fab'
 import { Link } from 'react-router-dom'
 import '../../styles/Event.css'
 import { Avatar } from '@material-ui/core';
-import { getTicket } from '../../actions/tickets';
 
 export default function TicketList(props) {
     console.log('ticketslist props', props)
@@ -31,7 +30,7 @@ export default function TicketList(props) {
                                             style={{margin: 10}} 
                                             size='small'
                                             className='view-ticket-details' 
-                                            onClick={()=> getTicket(props.event.id, ticket.id)}
+                                            //onClick={()=> getTicket(props.event.id, ticket.id)}
                                             component={Link} 
                                             to={`/events/${props.event.id}/tickets/${ticket.id}`}
                                             >
