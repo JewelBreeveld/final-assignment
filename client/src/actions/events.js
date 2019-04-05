@@ -26,7 +26,7 @@ const updateEvent = event => ({
 
 export const getEvent = (eventId) => (dispatch) => {
     request
-      .get(`${baseUrl}/events/${eventId}`)
+      .get(`${baseUrl}/events/${eventId}/tickets`)
       .then(result => dispatch(updateEvent(result.body)))
       .catch(err => console.error(err))
 }

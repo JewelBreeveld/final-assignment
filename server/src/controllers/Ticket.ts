@@ -91,7 +91,7 @@ export default class TicketController {
             numOfTickets.count,
             avgPrice.average,
             hoursOfTicketAdd,
-            numOfComments,
+            numOfComments.count,
             ticket.price
         )
 
