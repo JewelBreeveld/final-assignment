@@ -14,7 +14,6 @@ export const getTickets = (eventId) => (dispatch) => {
   
     request
       .get(`${baseUrl}/events/${eventId}/tickets`)
-      //.set('Authorization', `Bearer ${jwt}`)
       .then(result => dispatch(updateTickets(result.body)))
       .catch(err => console.error(err))
 }
