@@ -11,7 +11,7 @@ import AccountIcon from '@material-ui/icons/AccountBox'
 
 const TopBar = (props) => {
   const { history, user } = props
-  //console.log('topbar', props)
+  console.log('topbar', props)
   return (
     <AppBar position="absolute" style={{zIndex:10}}>
       <Toolbar>
