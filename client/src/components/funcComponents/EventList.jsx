@@ -5,10 +5,8 @@ import Fab from '@material-ui/core/Fab'
 import { Link } from 'react-router-dom'
 import '../../styles/Event.css'
 
-
-
 export default function EventList(props) {
-  console.log('fc eventlist props', props.events.event)
+  console.log('fc eventlist props', props)
   
   return(<div>
             <div className='events-div'>
@@ -19,7 +17,7 @@ export default function EventList(props) {
                                     <Typography style={{margin: 10}}> Description: {event.description} </Typography>
                                     <Typography style={{margin: 10}}> Startdate: {event.startDate} </Typography>
                                     <Typography style={{margin: 10}}> Enddate: {event.endDate} </Typography>
-                                    <Typography style={{margin: 10}}> Created by: {}</Typography>
+                                    <Typography style={{margin: 10}}> Created by: {event.user.firstName}</Typography>
                                     <Fab    variant="extended"
                                             style={{margin: 10}} 
                                             size='small'

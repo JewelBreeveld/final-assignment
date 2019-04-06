@@ -27,7 +27,7 @@ export default class Ticket extends BaseEntity {
     @UpdateDateColumn({ type: "timestamp" })
     updatedOn: Date;
 
-    @ManyToOne(_ => User, user => user.tickets)
+    @ManyToOne(_ => User, user => user.tickets, {eager: true})
     user: User
 
     @OneToMany(_=> Comment, comment => comment.ticket, {eager: true})

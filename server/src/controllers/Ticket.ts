@@ -96,6 +96,7 @@ export default class TicketController {
         )
 
         const allDetails = {...ticket, calculateRisk, eventId, ticketId, userId}
+        
         return allDetails
 
     }

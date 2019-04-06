@@ -23,7 +23,7 @@ export default (state = null, {type, payload}) => {
       }
 
     case UPDATE_USERS:
-    console.log(payload.users, 'payload reducer user')
+    //console.log(payload.users, 'payload reducer user')
       return payload.users
 
     default:

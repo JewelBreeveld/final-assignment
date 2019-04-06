@@ -14,15 +14,15 @@ class TicketDetailsContainer extends PureComponent {
     state = {
         formValues: {
             comment: ''},
-        eventId: this.props.match.params.id,
-        ticketId: this.props.match.params.ticketId, 
+        // eventId: this.props.match.params.id,
+        // ticketId: this.props.match.params.ticketId, 
        
     }
 
     componentDidMount () {
-        const { eventId, ticketId } = this.state
-        this.props.getTicket(eventId, ticketId)
-        this.props.getEvent(eventId)
+        //const { eventId, ticketId } = this.state
+        // this.props.getTicket(eventId, ticketId)
+        // this.props.getEvent(eventId)
     }
 
     onChange = (event) => {
@@ -38,14 +38,10 @@ class TicketDetailsContainer extends PureComponent {
     event.preventDefault(event)
     this.setState({
         formValues: this.state.formValues,
-        eventId: this.props.match.params.id,
-        ticketId: this.props.match.params.ticketId
     })
-    console.log('onSubmitstate',this.state)
+    console.log('ticket detailsCont. onSubmitstate',this.state)
     this.props.sendComment(this.state.formValues)
     }
-
-    
 
     render() {
         console.log('TicketDetailsContainer', this.props.ticket)
@@ -55,8 +51,7 @@ class TicketDetailsContainer extends PureComponent {
                         <CommentForm onChange={this.onChange}
                                         values={this.state.formValues}
                                         event={event}
-                                        onSubmit={this.onSubmit}
-                                        ticket={ticket}/>
+                                        onSubmit={this.onSubmit}/>
                     </Paper>  
                     <Paper>
                         <CommentList ticket={ticket}/>
@@ -67,9 +62,9 @@ class TicketDetailsContainer extends PureComponent {
     
     const mapStateToProps = state => ({
       event: state.events,
-      ticket: state.tickets,
-      ticketId: state.ticketId,
-      eventId: state.eventId
+      ticket: state.ticket,
+    //   ticketId: state.ticketId,
+    //   eventId: state.eventId
     })
     
     export default connect(mapStateToProps, { sendComment, getEvent, getTicket })(TicketDetailsContainer)
