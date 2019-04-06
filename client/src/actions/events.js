@@ -13,10 +13,12 @@ const updateEvents = events => ({
 export const getEvents = () => (dispatch) => {
     request
       .get(`${baseUrl}/events`)
-      .then(result => dispatch(updateEvents(result.body)))
+      .then(result => {
+        console.log("get events result dot body", result.body)  
+        dispatch(updateEvents(result.body))})
       .catch(err => console.error(err))
 }
-
+//////////////////////////////////////////////////////////
 export const UPDATE_EVENT = 'UPDATE_EVENT'
 
 const updateEvent = event => ({
@@ -27,10 +29,13 @@ const updateEvent = event => ({
 export const getEvent = (eventId) => (dispatch) => {
     request
       .get(`${baseUrl}/events/${eventId}/tickets`)
-      .then(result => dispatch(updateEvent(result.body)))
+      .then(result => {
+        console.log("get events result dot body", result.body)  
+        dispatch(updateEvent(result.body))})
+        
       .catch(err => console.error(err))
 }
-
+//////////////////////////////////////////////////////////
 export const CREATE_EVENT = 'CREATE_EVENTS'
 
 const createEvent = event => ({
@@ -39,9 +44,6 @@ const createEvent = event => ({
 })
 
 export const addEvent = (data) => (dispatch, getState) => {
-
-    //if(!jwt) return alert('log in first')
-
     console.log('addevent action data',data)
     const state = getState();
     const jwt = state.currentUser.jwt;

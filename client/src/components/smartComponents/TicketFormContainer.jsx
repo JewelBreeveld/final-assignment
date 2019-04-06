@@ -11,7 +11,7 @@ class TicketFormContainer extends PureComponent {
           price: '',
           description: '',
           picture: '',
-          eventId: this.props.event.id
+          //eventId: this.props.event.id
       },
     }
   

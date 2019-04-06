@@ -5,35 +5,37 @@ import Fab from '@material-ui/core/Fab'
 import { Link } from 'react-router-dom'
 import '../../styles/Event.css'
 import { Avatar } from '@material-ui/core';
+//import { userId } from '../../jwt';
 
 export default function TicketList(props) {
-    console.log('ticketslist props', props)
+    
+    const { event } = props 
 
-    if(!props.event.tickets) return 'Loading ...'
+    console.log('ticketslist props', props)
+    //console.log('ticketslist props userId', userId)
+
+    if(!event.tickets) return 'Loading ...'
     return (<div>
                 <Card className='event-details-div'>
-                    <img src={props.event.urlPictureLogo} style={{margin: 20}} alt='logo' className='image'/>
-                    <Typography style={{margin: 10}}>{props.event.name}</Typography>
-                    <Typography style={{margin: 20}}> Description: {props.event.description} </Typography>
-                    <Typography style={{margin: 20}}> Startdate: {props.event.startDate} </Typography>
-                    <Typography style={{margin: 20}}> Enddate: {props.event.endDate} </Typography>
+                    <img src={event.urlPictureLogo} style={{margin: 20}} alt='logo' className='image'/>
+                    <Typography style={{margin: 10}}>{event.name}</Typography>
+                    <Typography style={{margin: 20}}> Description: {event.description} </Typography>
+                    <Typography style={{margin: 20}}> Startdate: {event.startDate} </Typography>
+                    <Typography style={{margin: 20}}> Enddate: {event.endDate} </Typography>
                 </Card >
                 <div >
-                    {props.event.tickets.map(ticket => {
+                    {event.tickets.map(ticket => {
                         return  <Card key={ticket.id}>
                                     <Avatar src={ticket.picture} style={{margin: 15}}></Avatar>
-                                    <Typography style={{margin: 10}}>Seller: </Typography>
+                                    <Typography style={{margin: 10}}>Seller: {ticket.user.firstName} </Typography>
                                     <Typography style={{margin: 10}}>Price: € {ticket.price}</Typography>
                                     <Typography style={{margin: 10}}>Description: {ticket.description}</Typography>
-                                    <Typography style={{margin: 10}}>Risk: {ticket.risk}</Typography>
-                                    <Typography >Comments: {ticket.comments.map(comment => comment)} </Typography>
                                     <Fab    variant="extended"
                                             style={{margin: 10}} 
                                             size='small'
                                             className='view-ticket-details' 
-                                            // onClick={()=> getTicket(props.event.id, ticket.id)}
                                             component={Link} 
-                                            to={`/events/${props.event.id}/tickets/${ticket.id}`}
+                                            to={`/events/${event.id}/tickets/${ticket.id}`}
                                             >
                                     More details</Fab>
                                 </Card>
