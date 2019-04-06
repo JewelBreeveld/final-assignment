@@ -8,7 +8,7 @@ import { getEvent } from '../../actions/events'
 import { getTicket } from '../../actions/tickets'
 import { getComments} from '../../actions/comments'
 import CommentList from '../funcComponents/CommentList'
-//import { Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 
 class TicketDetailsContainer extends PureComponent {
 
@@ -50,15 +50,20 @@ class TicketDetailsContainer extends PureComponent {
     render() {
         console.log('ticket detailsCont. props', this.props)
         console.log('ticket detailsCont. state', this.state)
-        const { event, ticket, comments } = this.props
-        return (<Paper> TicketDetailsContainer
-                    <Paper>
+        const { event, ticket, comments, currentUser } = this.props
+        return (<Paper> 
+                <Typography>
+                TicketDetailsContainer
+                </Typography>
+                    {currentUser
+                    ?   <Paper>
                         <CommentForm onChange={this.onChange}
                                         values={this.state.formValues}
                                         event={event}
                                         ticket={ticket}
                                         onSubmit={this.onSubmit}/>
-                    </Paper>  
+                        </Paper>  
+                    : 'Log in to add a comment'}
                     <Paper>
                         <CommentList event={event} ticket={ticket} comments={comments} />
                     </Paper>
@@ -69,7 +74,8 @@ class TicketDetailsContainer extends PureComponent {
     const mapStateToProps = state => ({
       event: state.events,
       ticket: state.tickets,
-      comments: state.comments
+      comments: state.comments,
+      currentUser: state.currentUser
     })
     
     export default connect(mapStateToProps, { sendComment, getEvent, getTicket, getComments })(TicketDetailsContainer)

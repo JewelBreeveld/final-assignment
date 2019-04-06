@@ -31,13 +31,15 @@ const TopBar = (props) => {
         { user ? 
           <Button color="inherit" onClick={() => history.push('/signup')} disabled={true}>Sign up</Button>
           :
-          <Button color="inherit" onClick={() => history.push('/signup')} disabled={true}>Sign up</Button>
+          <Button color="inherit" onClick={() => history.push('/signup')} disabled={false}>Sign up</Button>
         }
         { 
           <Button color="inherit" onClick={() => history.push('/events')}> Events</Button>
         }
-        { 
-          <Button color="inherit" onClick={ () => history.push('/logout')}>Log out</Button>
+        { user ?
+          <Button color="inherit" onClick={ () => history.push('/logout')} disabled={false}>Log out</Button>
+          :
+          <Button color="inherit" onClick={ () => history.push('/logout')} disabled={true}>Log out</Button>
         }
       </Toolbar>
     </AppBar>

@@ -8,8 +8,7 @@ export default function CommentList(props) {
 
     const {  comments } = props  // event, ticket,
 
-    if(!comments) return 'There are no comments for this ticket. Be the first!!'
-
+    if (!comments) return 'There are no comments for this ticket. Be the first!!'
     return (<div> 
                 <div>
                     {comments.map(comment => {
