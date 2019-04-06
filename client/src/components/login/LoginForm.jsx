@@ -6,6 +6,7 @@ export default class LoginForm extends PureComponent {
 	handleSubmit = (e) => {
 		e.preventDefault()
 		this.props.onSubmit(this.state)
+		//this.props.history.goBack()
 	}
 
 	handleChange = (event) => {

@@ -1,19 +1,19 @@
-import { UPDATE_COMMENTS } from '../actions/comments'
+import { UPDATE_COMMENTS, ADD_COMMENT } from '../actions/comments'
 
 export default (state = null, {type, payload}) => {
     switch(type) {
         case UPDATE_COMMENTS:
-        console.log("payload all comments", payload.comments)
-        return payload.comments
+        console.log("payload all comments", payload)
+        return payload
         // return {
         //     ...state,
         //     [payload.tickets]: payload
         // }
 
-        // case ADD_COMMENT: 
-        // console.log('payload 1 comment',payload)
-        // //console.log('comment payload', payload.user)
-        // return {...state, payload}
+        case ADD_COMMENT: 
+        console.log('payload 1 comment',payload)
+        //console.log('comment payload', payload.user)
+        return payload
         
         default:
         return state

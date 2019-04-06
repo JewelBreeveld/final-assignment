@@ -18,6 +18,12 @@ class EventsListContainer extends PureComponent {
         this.props.getUsers()
     }
 
+    // onClick () {
+    //     this.setState({
+
+    //     })
+    // }
+
     render() {
     console.log('eventlistcontainer props', this.props)
     
@@ -25,7 +31,7 @@ class EventsListContainer extends PureComponent {
 
     if(!events) return 'Loading...'
         return (
-            <Paper className='outer-paper'>
+            <Paper className='outer-paper'> EventsListContainer
                 <Card>
                     {!currentUser ? Fab.disabled=true && 'Log in to create an event' : 
                     <Fab variant="extended" 
@@ -39,7 +45,7 @@ class EventsListContainer extends PureComponent {
                     }
                 </Card>
                 <div>
-                    <EventList events={events} />
+                    <EventList events={events} onClick={this.onClick}/>
                 </div>
             </Paper>
         )

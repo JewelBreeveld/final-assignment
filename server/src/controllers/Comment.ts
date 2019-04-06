@@ -14,7 +14,8 @@ export default class CommentController {
         const ticket = await Ticket.findOneById(ticketId)
         if(!ticket) throw new BadRequestError
 
-        const comments = Comment.find({where : {ticketId: ticketId}})
+        const comments = Comment.find({ where : {ticketId: ticketId},
+                                        }) //order: {createdOn: "DESC"}
         return { comments }
     }
 
@@ -35,10 +36,11 @@ export default class CommentController {
     async addComment(
         @CurrentUser() user: User, 
         @Params() params, 
-        @Body() comment: string
+        @Body() data: Comment
     ){
         const {eventId, ticketId} = params
-
+        const { comment } = data
+        console.log(data, 'dataaa!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         const event = await Event.findOneById(eventId)
         if(!event) throw new BadRequestError('This event does not exist')
 
@@ -52,6 +54,7 @@ export default class CommentController {
             user
           }).save();
           console.log(comment, "comment")
+          console.log(createdComment, "createdComment")
           return createdComment;
     }
 

@@ -8,7 +8,7 @@ import '../../styles/Event.css'
 export default function EventList(props) {
   console.log('fc eventlist props', props)
   
-  return(<div>
+  return(<div> Eventlist
             <div className='events-div'>
                   {props.events.event.map(event => {
                     return <Card key={event.id} className='event-card'>
@@ -25,6 +25,15 @@ export default function EventList(props) {
                                             component={Link} 
                                             to={`/events/${event.id}/tickets`}>
                                             Find tickets
+                                    </Fab>
+                                    <Fab    variant="extended"
+                                            style={{margin: 10}} 
+                                            size='small'
+                                            className='view-tickets' 
+                                        //     onClick={}
+                                            component={Link} 
+                                            to={`/events/create`}>
+                                            Edit event
                                     </Fab>
                                     </Card>
                 })}
