@@ -42,13 +42,37 @@ export const getTicket = (eventId, ticketId) => (dispatch) => {
 }
 //////////////
 
+export const EDIT_TICKET = "EDIT_TICKET"
+
+const editTicket = payload => ({
+    type: EDIT_TICKET,
+    pauload: payload
+})
+
+export const sendChangedTicket = (data) => (dispatch, getState) =>{
+    
+    const state = getState();
+    const jwt = state.currentUser.jwt;
+  
+    if (isExpired(jwt)) return dispatch(logout())
+
+    request
+    .put(`${baseUrl}/events/${data.eventId}/tickets/${data.ticketId}`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .send(data)
+    .then(result => {
+        console.log('get ticket res dot body',result.body)
+        dispatch(editTicket(result.body))
+    })
+    .catch(err => console.error(err))
+}
+
 export const SELL_TICKET = 'SELL_TICKET'
 
 const sellTicket = event => ({
     type: SELL_TICKET,
     payload: event
 })
-
 export const addTicket = (data) => (dispatch, getState) => {
     console.log('addticket action data',data)
     const state = getState();

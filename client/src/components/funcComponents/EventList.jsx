@@ -5,6 +5,8 @@ import Fab from '@material-ui/core/Fab'
 import { Link } from 'react-router-dom'
 import '../../styles/Event.css'
 
+//import { getEvent } from '../../actions/events'
+
 export default function EventList(props) {
   console.log('fc eventlist props', props)
   
@@ -32,10 +34,11 @@ export default function EventList(props) {
                                                 style={{margin: 10}} 
                                                 size='small'
                                                 className='view-tickets' 
-                                                //onClick={}
+                                                onClick={props.onClick}
                                                 component={Link} 
-                                                to={`/events/create`}>
-                                                Edit event
+                                                to={`/events/edit`}
+                                        >
+                                        Edit event
                                         </Fab>
                                         : null }
                                     </Card>

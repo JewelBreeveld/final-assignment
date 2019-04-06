@@ -38,6 +38,18 @@ export default function TicketList(props) {
                                             to={`/events/${event.id}/tickets/${ticket.id}`}
                                             >
                                     More details</Fab>
+                                    {/* {event.user.id === props.userId 
+                                        ? 
+                                        <Fab    variant="extended"
+                                                style={{margin: 10}} 
+                                                size='small'
+                                                className='view-tickets' 
+                                                //onClick={() => this.setState({eventToEdit: Card.key})}
+                                                component={Link} 
+                                                to={`/events/${event.id}/tickets/${ticket.id}/edit`}>
+                                                Edit ticket
+                                        </Fab>
+                                        : null } */}
                                 </Card>
                     })} 
         </div>

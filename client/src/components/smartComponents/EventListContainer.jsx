@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import {userId} from '../../jwt'
 import EventList from '../funcComponents/EventList'
-import { getEvents } from '../../actions/events'
+import { getEvents, getEvent } from '../../actions/events'
 import { getUsers, getUser } from '../../actions/users'
 import Paper from '@material-ui/core/Paper'
 import '../../styles/Event.css'
@@ -19,10 +19,17 @@ class EventsListContainer extends PureComponent {
         this.props.getUser(this.props.userId)
     }
 
+
+    onClick = () => {
+        const event =  this.props.getEvent(this.Card.key)
+        console.log('get event klik', event)
+    }
+
+
     render() {
     console.log('eventlistcontainer props', this.props)
     
-    const { events, currentUser, userId } = this.props 
+    const { events, currentUser, userId, getEvent } = this.props 
 
     if(!events) return 'Loading...'
         return (
@@ -40,7 +47,7 @@ class EventsListContainer extends PureComponent {
                     }
                 </Card>
                 <div>
-                    <EventList events={events} onClick={this.onClick} user={userId}/>
+                    <EventList events={events} onClick={this.onClick} user={userId} getEvent={getEvent}/>
                 </div>
             </Paper>
         )
@@ -50,9 +57,10 @@ class EventsListContainer extends PureComponent {
 const mapStateToProps = state => ({
     authenticated: state.currentUser !== null,
     events: state.events,
+    event: state.event,
     users: state.users,
     currentUser: state.currentUser,
     userId: state.currentUser && userId(state.currentUser.jwt)
 })
 
-export default connect(mapStateToProps, { getEvents, getUsers, getUser })(EventsListContainer)
+export default connect(mapStateToProps, { getEvents, getEvent, getUsers, getUser })(EventsListContainer)
