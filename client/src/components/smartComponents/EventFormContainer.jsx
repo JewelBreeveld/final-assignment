@@ -32,11 +32,16 @@ class EventFormContainer extends React.Component {
     this.props.history.push('/events')
   }
 
+  onClick () {
+
+  }
+ 
   render() {
     console.log('eventlistcontainer', this.props)
     return (<EventForm
-      onSubmit={this.onSubmit}
       onChange={this.onChange}
+      onSubmit={this.onSubmit}
+      // onClick={this.onClick}
       values={this.state.formValues}
     />)
   }

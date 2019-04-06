@@ -2,19 +2,20 @@ import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {login} from '../../actions/users'
 import LoginForm from './LoginForm'
-import {Redirect} from 'react-router-dom'
+//import {Redirect} from 'react-router-dom'
 
 class LoginPage extends PureComponent {
 
 	handleSubmit = (data) => {
 		this.props.login(data.email, data.password)
+		this.props.history.goBack()
 		
 	}
 
 	render() {
-		if (this.props.currentUser) return (
-			<Redirect to="/" />
-		)
+		// if (this.props.currentUser) return (
+		// 	<Redirect to="/" />
+		// )
 
 		return (
 			<div>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import CommentForm from '../funcComponents/CommentForm'
 import { sendComment } from '../../actions/comments'
 import Paper from '@material-ui/core/Paper'
-//import Card from '@material-ui/core/Card'
+import Card from '@material-ui/core/Card'
 import { getEvent } from '../../actions/events'
 import { getTicket } from '../../actions/tickets'
 import { getComments} from '../../actions/comments'
@@ -18,8 +18,6 @@ class TicketDetailsContainer extends PureComponent {
     }
 
     componentDidMount () {
-
-        //const { eventId, ticketId } = this.props.match.params
         const eventId = this.props.match.params.id
         const ticketId = this.props.match.params.ticketId
 
@@ -45,16 +43,18 @@ class TicketDetailsContainer extends PureComponent {
     })
     
     this.props.sendComment(this.state.formValues)
+    this.props.history.push(`/events/${this.props.event.id}/tickets/${this.props.ticket.id}`)
     }
 
     render() {
         console.log('ticket detailsCont. props', this.props)
-        console.log('ticket detailsCont. state', this.state)
+        console.log('ticket detailsCont. state: ', this.state)
         const { event, ticket, comments, currentUser } = this.props
+
         return (<Paper> 
-                <Typography>
+                <Card>
                 TicketDetailsContainer
-                </Typography>
+                </Card>
                     {currentUser
                     ?   <Paper>
                         <CommentForm onChange={this.onChange}
@@ -72,8 +72,8 @@ class TicketDetailsContainer extends PureComponent {
     }
     
     const mapStateToProps = state => ({
-      event: state.events,
-      ticket: state.tickets,
+      event: state.event,
+      ticket: state.ticket,
       comments: state.comments,
       currentUser: state.currentUser
     })

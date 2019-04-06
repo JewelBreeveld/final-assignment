@@ -6,11 +6,19 @@ import Typography from '@material-ui/core/Typography'
 export default function CommentList(props) {
     console.log('fc commentlist props', props)
 
-    const {  comments } = props  // event, ticket,
+    const {  comments, event, ticket } = props  // event, ticket,
 
     if (!comments) return 'There are no comments for this ticket. Be the first!!'
     return (<div> 
-                <div>
+                <Card className='event-details-card'>
+                    <Typography>Tickets for {event.name} on {event.startDate}</Typography>  
+                </Card>
+                <Card className='ticket-details-card'>
+                    <Typography>{ticket.description}</Typography>
+                    <Typography>€ {ticket.price}</Typography>
+                    <Typography>Average price </Typography> 
+                </Card>
+                <div> <Typography>Comments</Typography>
                     {comments.map(comment => {
                         return <Card key={comment.id}>
                             <Typography style={{margin: 20}}>Posted by: {comment.user.firstName}</Typography>

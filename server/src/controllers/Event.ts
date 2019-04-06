@@ -19,7 +19,10 @@ export default class EventController {
 
     @Post('/events/create')
     @HttpCode(201)
-    async createEvent(@CurrentUser() user: User, @Body() data: Event){
+    async createEvent(
+        @CurrentUser() user: User, 
+        @Body() data: Event
+        ){
         console.log(user, "user")
         const { name, description, urlPictureLogo, startDate, endDate } = data
         const event = await Event.create({
