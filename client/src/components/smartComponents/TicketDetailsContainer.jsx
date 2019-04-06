@@ -8,7 +8,7 @@ import { getEvent } from '../../actions/events'
 import { getTicket } from '../../actions/tickets'
 import { getComments} from '../../actions/comments'
 import CommentList from '../funcComponents/CommentList'
-import { Typography } from '@material-ui/core'
+//import { Typography } from '@material-ui/core'
 
 class TicketDetailsContainer extends PureComponent {
 

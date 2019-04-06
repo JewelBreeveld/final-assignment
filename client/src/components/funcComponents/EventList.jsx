@@ -26,15 +26,18 @@ export default function EventList(props) {
                                             to={`/events/${event.id}/tickets`}>
                                             Find tickets
                                     </Fab>
-                                    <Fab    variant="extended"
-                                            style={{margin: 10}} 
-                                            size='small'
-                                            className='view-tickets' 
-                                        //     onClick={}
-                                            component={Link} 
-                                            to={`/events/create`}>
-                                            Edit event
-                                    </Fab>
+                                        {event.user.id === props.user 
+                                        ? 
+                                        <Fab    variant="extended"
+                                                style={{margin: 10}} 
+                                                size='small'
+                                                className='view-tickets' 
+                                                //onClick={}
+                                                component={Link} 
+                                                to={`/events/create`}>
+                                                Edit event
+                                        </Fab>
+                                        : null }
                                     </Card>
                 })}
             </div>
