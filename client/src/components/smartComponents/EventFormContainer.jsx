@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { addEvent } from '../../actions/events'
 import EventForm from '../funcComponents/EventForm'
 
-class EventFormContainer extends React.Component {
+class EventFormContainer extends React.Component { // eventz CreateEventFormContainer.js
   state = {
     formValues: {
         name: '',
@@ -32,17 +32,15 @@ class EventFormContainer extends React.Component {
     this.props.history.push('/events')
   }
 
-  onClick () {
-
-  }
- 
   render() {
     console.log('eventlistcontainer', this.props)
+    // if editMode = false return eventform onsubmit new, if editmode is true return eventfrom onsubmit edit
     return (<EventForm
       onChange={this.onChange}
       onSubmit={this.onSubmit}
-      // onClick={this.onClick}
       values={this.state.formValues}
+      event={this.props.event}
+      // editMode={this.state.editMode}
     />)
   }
 }

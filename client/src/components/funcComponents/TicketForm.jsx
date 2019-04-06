@@ -5,18 +5,28 @@ import TextField from '@material-ui/core/TextField'
 
 export default function TicketForm(props) {
     console.log('ticketform', props)
-
+    
     return(<div className="sell-ticket-form">
         <Card onSubmit={props.onSubmit}>
             <TextField placeholder="Price"        type="text" name="price" onChange={props.onChange}  style={{margin: 10}} />
             <TextField placeholder="Description"  type="text" name="description" onChange={props.onChange}  style={{margin: 10}} />
             <TextField placeholder="Picture url"  type="text" name="pictureUrl" onChange={props.onChange}  style={{margin: 10}} />
-          <Fab type="submit" onClick={props.onSubmit} 
-                              variant="extended"
-                              style={{margin: 10}} 
-                              size='small'
-                              className='add-tickets'>
-            Add Ticket</Fab>
+            {!props.editMode ? 
+                <Fab type="submit"  onClick={props.onSubmit} 
+                variant="extended"
+                style={{margin: 10}} 
+                size='small'
+                className='add-ticket'>
+                Add Ticket</Fab>
+                :
+                <Fab type="submit"  onClick={props.onSubmitChange} 
+                variant="extended"
+                style={{margin: 10}} 
+                size='small'
+                className='edit-ticket'>
+                Submit changes </Fab>
+            }
+
         </Card>
       </div>
   )

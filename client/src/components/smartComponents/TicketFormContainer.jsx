@@ -11,8 +11,9 @@ class TicketFormContainer extends PureComponent {
           price: '',
           description: '',
           picture: '',
-          //eventId: this.props.event.id
+          eventId: this.props.event.id
       },
+      editMode: false
     }
   
     onChange = (event) => {
@@ -30,8 +31,24 @@ class TicketFormContainer extends PureComponent {
           formValues: this.state.formValues
       })
       this.props.addTicket(this.state.formValues)
-      // this.props.history.goBack()
     }
+
+    onEdit = () => {
+      // intialize editing mode:
+      // set the starting value of the fields to the event details
+      this.setState({
+        editMode: true,
+        formValues: {
+          name: this.props.event.name,
+          date: this.props.event.date,
+          description: this.props.event.description
+        }
+      })
+    }
+
+    // onClick () {
+    //   window.location.href=window.location.href
+    // }
 
     render() {
       console.log('ticketformcontainer', this.props)
@@ -40,7 +57,9 @@ class TicketFormContainer extends PureComponent {
         onSubmit={this.onSubmit}
         onChange={this.onChange}
         values={this.state.formValues}
-        event={this.props.event}/>
+        event={this.props.event}
+        onClick={this.props.onClick}
+        userId={this.props.userId}/>
         )
     }
   }

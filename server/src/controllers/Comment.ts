@@ -40,7 +40,6 @@ export default class CommentController {
     ){
         const {eventId, ticketId} = params
         const { comment } = data
-        console.log(data, 'dataaa!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         const event = await Event.findOneById(eventId)
         if(!event) throw new BadRequestError('This event does not exist')
 

@@ -1,4 +1,4 @@
-import {  GET_TICKET } from '../actions/tickets' //UPDATE_TICKET,
+import {  GET_TICKET, EDIT_TICKET } from '../actions/tickets' //UPDATE_TICKET,
 
 export default (state = null, {type, payload}) => {
     switch(type) {
@@ -11,6 +11,10 @@ export default (state = null, {type, payload}) => {
 
         case GET_TICKET: 
         console.log('payload get ticket', payload)
+        return payload
+
+        case EDIT_TICKET: 
+        console.log('payload edited ticket', payload)
         return payload
         
         default:

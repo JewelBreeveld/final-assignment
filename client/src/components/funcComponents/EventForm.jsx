@@ -2,12 +2,12 @@ import * as React from 'react'
 
 export default function EventFrom(props) {
     console.log('eventform', props)
-   // console.log('eventform state', state)
+
 return(<div className="create-event-form">
         <form onSubmit={props.onSubmit}>
 
           <label>
-            Name:
+            Name: 
             <input type="text" name="name" onChange={props.onChange}/>
           </label>
 
