@@ -22,6 +22,7 @@ class TicketListContainer extends PureComponent {
         const { events, currentUser } = this.props  //userId
         if(!events) return 'Loading ... '
         return(<Paper className='outer-paper'>
+        TicketListContainer
                 <div>
                     {currentUser 
                     ? <TicketFormContainer />

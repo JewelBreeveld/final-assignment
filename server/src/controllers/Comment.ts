@@ -1,4 +1,4 @@
-import { JsonController, Get, Post, CurrentUser, BadRequestError, Params, Body, HttpCode } from "routing-controllers";
+import { JsonController, Get, Post, CurrentUser, BadRequestError, Params, Body, HttpCode, Param } from "routing-controllers";
 import Comment from '../entities/Comment'
 import User from "../entities/User";
 import Ticket from "../entities/Ticket";
@@ -8,10 +8,27 @@ import Event from '../entities/Event'
 export default class CommentController {
 
     @Get('/events/:eventId/tickets/:ticketId')
-    async allComments() {
-        const comments = Comment.find()
-        return {comments}
+    async getTicketComments(
+        @Param('ticketId') ticketId: number
+    ) {
+        const ticket = await Ticket.findOneById(ticketId)
+        if(!ticket) throw new BadRequestError
+
+        const comments = Comment.find({where : {ticketId: ticketId}})
+        return { comments }
     }
+
+    //get all tickets for an event
+    //@Authorized()
+    @Get('/events/:eventId/tickets')
+    async getEventTickets(
+        @Param('eventId') eventId: number
+        )   {
+            const event = await Event.findOneById(eventId)
+            if(!event) throw new BadRequestError('Event does not exist')
+            return event
+        }
+
 
     @Post('/events/:eventId/tickets/:ticketId')
     @HttpCode(201)
