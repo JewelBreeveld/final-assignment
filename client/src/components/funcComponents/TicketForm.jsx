@@ -19,7 +19,7 @@ export default function TicketForm(props) {
                 className='add-ticket'>
                 Add Ticket</Fab>
                 :
-                <Fab type="submit"  onClick={props.onSubmitChange} 
+                <Fab type="submit" onClick={props.onSubmitChange} 
                 variant="extended"
                 style={{margin: 10}} 
                 size='small'

@@ -3,23 +3,7 @@ import {baseUrl} from '../constants'
 import {logout} from './users'
 import {isExpired} from '../jwt'
 
-export const UPDATE_COMMENTS = 'UPDATE_COMMENTS'
 
-const updateComments = payload => ({
-    type: UPDATE_COMMENTS,
-    payload: payload
-})
-
-export const getComments = (eventId, ticketId) => (dispatch) => {
-  
-    request
-      .get(`${baseUrl}/events/${eventId}/tickets/${ticketId}`)
-      .then(res => {
-        console.log('get comments res dot body',res.body)
-        dispatch(updateComments(res.body.comments))
-    })
-      .catch(err => console.error(err))
-}
 
 //////////////
 
@@ -52,3 +36,21 @@ export const sendComment = (data) => (dispatch, getState) => {
       .catch(err => console.error(err))
 }
 //////////////
+
+export const UPDATE_COMMENTS = 'UPDATE_COMMENTS'
+
+const updateComments = payload => ({
+    type: UPDATE_COMMENTS,
+    payload: payload
+})
+
+export const getComments = (eventId, ticketId) => (dispatch) => {
+  
+    request
+      .get(`${baseUrl}/events/${eventId}/tickets/${ticketId}`)
+      .then(res => {
+        console.log('get comments res dot body',res.body)
+        dispatch(updateComments(res.body.comments))
+    })
+      .catch(err => console.error(err))
+}
