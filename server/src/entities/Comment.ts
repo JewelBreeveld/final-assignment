@@ -21,7 +21,7 @@ export default class Comment extends BaseEntity {
     @UpdateDateColumn({ type: 'timestamp' })
     updatedOn: Date
 
-    @ManyToOne(_ => User, user => user.comments)
+    @ManyToOne(_ => User, user => user.comments, {eager: true})
     user: User;
 
     @ManyToOne(_ => Ticket, ticket => ticket.comments, { onDelete: 'CASCADE' })
