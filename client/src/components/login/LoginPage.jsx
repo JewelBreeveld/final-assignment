@@ -2,6 +2,8 @@ import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {login} from '../../actions/users'
 import LoginForm from './LoginForm'
+import Paper from '@material-ui/core/Paper'
+
 //import {Redirect} from 'react-router-dom'
 
 class LoginPage extends PureComponent {
@@ -13,18 +15,15 @@ class LoginPage extends PureComponent {
 	}
 
 	render() {
-		// if (this.props.currentUser) return (
-		// 	<Redirect to="/" />
-		// )
-
+	
 		return (
-			<div>
+			<Paper>
 				<h1>Login</h1>
 
 				<LoginForm onSubmit={this.handleSubmit} />
 
         { this.props.error && <span style={{color:'red'}}>{this.props.error}</span> }
-			</div>
+			</Paper>
 		)
 	}
 }

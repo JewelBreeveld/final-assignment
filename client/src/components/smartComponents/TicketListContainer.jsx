@@ -7,6 +7,7 @@ import { getUsers, getUser } from '../../actions/users'
 import Paper from '@material-ui/core/Paper'
 import TicketFormContainer from './TicketFormContainer'
 import { getTicket } from '../../actions/tickets';
+import Card from '@material-ui/core/Card'
 
 class TicketListContainer extends PureComponent {
 
@@ -28,7 +29,7 @@ class TicketListContainer extends PureComponent {
                 <div>
                     {currentUser 
                     ? <TicketFormContainer userId={userId}/>
-                    : 'Log in to create a ticketsale'}
+                    : <Card className='outer-card'>Log in to create a ticketsale</Card>}
                     
                     <TicketList event={events} userId={userId}/>  
                     {/* userId={userId} */}

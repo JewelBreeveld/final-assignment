@@ -1,41 +1,46 @@
 import * as React from 'react'
+import Card from '@material-ui/core/Card'
+import Typography from '@material-ui/core/Typography'
+import Fab from '@material-ui/core/Fab'
+import TextField from '@material-ui/core/TextField'
+
 
 export default function EventFrom(props) {
     console.log('eventform', props)
 
 return(<div className="create-event-form">
-        <form onSubmit={props.onSubmit}>
+        <Card onSubmit={props.onSubmit}>
 
-          <label>
-            Name: 
-            <input type="text" name="name" onChange={props.onChange}/>
-          </label>
+          <Typography>
+            <TextField placeholder='Name' type="text" name="name" onChange={props.onChange} style={{margin: 10}}/>
+          </Typography>
 
-          <label>
-            Description:
-            <input type="text" name="description" onChange={props.onChange}/>
-          </label>
+          <Typography>
+            <TextField placeholder='Description' type="text" name="description" onChange={props.onChange} style={{margin: 10}}/>
+          </Typography>
 
-          <label>
-            Picture:
-          <input type="text" name="pictureUrl" onChange={props.onChange}/>
-          </label>
+          <Typography>
+            <TextField placeholder='Picture' type="text" name="pictureUrl" onChange={props.onChange} style={{margin: 10}}/>
+          </Typography>
 
-          <label>
-            Startdate:
-            <input type="date" name="startDate" onChange={props.onChange}/>
-          </label>
+          <Typography>
+            <TextField placeholder='Startdate' type="text" name="startDate" onChange={props.onChange} style={{margin: 10}}/>
+          </Typography>
 
-          <label>
-            Enddate:
-            <input type="date" name="endDate" onChange={props.onChange}/>
-          </label>
+          <Typography>
+            <TextField placeholder='Enddate' type="text" name="endDate" onChange={props.onChange} style={{margin: 10}}/>
+          </Typography>
 
-          <button type="submit" onClick={props.onSubmit}>
+          <Fab  type="submit" 
+                variant="extended"
+                style={{margin: 10}} 
+                size='small'
+                onClick={props.onSubmit} 
+                >
             Add Event
-          </button>
+          </Fab>
 
-        </form>
+        </Card>
       </div>
   )
 }

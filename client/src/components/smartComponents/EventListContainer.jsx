@@ -34,7 +34,7 @@ class EventsListContainer extends PureComponent {
     if(!events) return 'Loading...'
         return (
             <Paper className='outer-paper'> EventsListContainer
-                <Card>
+                <Card className='outer-card'>
                     {!currentUser ? Fab.disabled=true && 'Log in to create an event' : 
                     <Fab variant="extended" 
                                     size='small'

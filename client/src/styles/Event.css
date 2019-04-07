@@ -1,16 +1,32 @@
-.outer-paper {
-    margin: auto;
-    margin-top: 20px;
-    padding: 20px;
-    width: 80%;
-  }
+.outer-paper, 
+.outer-card, 
+.ticket-details-card {
+            margin: auto;
+            margin-top: 20px;
+            padding: 20px;
+            width: 80%;
+        }
 
 .event-card {
     margin: 20px;
-    
 }
 
 .image {
     width: 100px;
     margin: 20px
+}
+
+.event-details-card {
+    margin: auto;
+    margin-top: 40px;
+    padding: 20px;
+    width: 80%;
+}
+
+.event-list-card,
+.comment-list-card {
+    margin: auto;
+    margin-top:20px;
+    padding: 20px;
+    width: 80%;
 }
