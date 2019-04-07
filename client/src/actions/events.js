@@ -25,13 +25,6 @@ const createEvent = event => ({
   payload: event
 })
 
-const updateEventsSuccess = () => ({
-  type: UPDATE_EVENTS_SUCCESS
-})
-
-const updateEventSuccess = () => ({
-  type: UPDATE_EVENT_SUCCESS
-})
 /////////////////////////////////////////////////////////
 
 export const getEvents = () => (dispatch) => {
@@ -71,22 +64,3 @@ export const addEvent = (data) => (dispatch, getState) => {
 }
 
 ////////////////////////////
-
-
-// export const updateEventsWithNew = () => (dispatch, getState) => {
-//   const state = getState()
-//   console.log(state, 'update events state')
-//   const jwt = state.currentUser.jwt
-
-//   if (isExpired(jwt)) return dispatch(logout())
-
-//   request
-//     .patch(`${baseUrl}/events`)
-//     .set('Authorization', `Bearer ${jwt}`)
-//     //.send({ board })
-//     .then(_ => dispatch(updateEventsSuccess()))
-//     .catch(err => console.error(err))
-// }
-
-
-
