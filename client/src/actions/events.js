@@ -3,12 +3,29 @@ import {baseUrl} from '../constants'
 import {logout} from './users'
 import {isExpired} from '../jwt'
 
+export const UPDATE_EVENT = 'UPDATE_EVENT'
 export const UPDATE_EVENTS = 'UPDATE_EVENTS'
+export const CREATE_EVENT = 'CREATE_EVENTS'
+export const UPDATE_EVENTS_SUCCESS = 'UPDATE_EVENTS_SUCCESS'
+export const UPDATE_EVENT_SUCCESS = 'UPDATE_EVENT_SUCCESS'
+
+/////////////////////////////////////////////////////////
+const updateEvent = event => ({
+  type: UPDATE_EVENT, 
+  payload: event
+})
 
 const updateEvents = events => ({
     type: UPDATE_EVENTS,
     payload: events
 })
+
+const createEvent = event => ({
+  type: CREATE_EVENT,
+  payload: event
+})
+
+/////////////////////////////////////////////////////////
 
 export const getEvents = () => (dispatch) => {
     request
@@ -18,30 +35,18 @@ export const getEvents = () => (dispatch) => {
         dispatch(updateEvents(result.body))})
       .catch(err => console.error(err))
 }
-//////////////////////////////////////////////////////////
-export const UPDATE_EVENT = 'UPDATE_EVENT'
-
-const updateEvent = event => ({
-    type: UPDATE_EVENT, 
-    payload: event
-})
+////////////////////////////
 
 export const getEvent = (eventId) => (dispatch) => {
     request
       .get(`${baseUrl}/events/${eventId}/tickets`)
       .then(result => {
-        console.log("get events result dot body", result.body)  
+        console.log("get event result dot body", result.body)  
         dispatch(updateEvent(result.body))})
         
       .catch(err => console.error(err))
 }
-//////////////////////////////////////////////////////////
-export const CREATE_EVENT = 'CREATE_EVENTS'
-
-const createEvent = event => ({
-    type: CREATE_EVENT,
-    payload: event
-})
+////////////////////////////
 
 export const addEvent = (data) => (dispatch, getState) => {
     console.log('addevent action data',data)
@@ -58,3 +63,4 @@ export const addEvent = (data) => (dispatch, getState) => {
       .catch(err => console.error(err))
 }
 
+////////////////////////////

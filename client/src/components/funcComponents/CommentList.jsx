@@ -8,7 +8,7 @@ export default function CommentList(props) {
     
     const {  comments, event, ticket } = props
 
-    if (!comments) return 'There are no comments for this ticket. Be the first!!'
+    if (!comments) return 'Loading!!'
     return (<div> 
                 <Card className='event-details-card'>
                     <Typography>Tickets for {event.name} on {event.startDate}</Typography>  

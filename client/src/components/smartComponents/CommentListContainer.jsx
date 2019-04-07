@@ -93,7 +93,8 @@ class CommentListContainer extends PureComponent {
                                                         values={this.state.formValues}
                                                         event={event}
                                                         ticket={ticket}
-                                                        onSubmit={this.onSubmitChange}/> 
+                                                        onSubmit={this.onSubmitChange}
+                                                        /> 
                                                         : null}
                     <Paper>
                         <CommentList event={event} ticket={ticket} comments={comments} userId={userId} editTicket={this.triggerEditTicketState}/>

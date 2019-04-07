@@ -107,12 +107,13 @@ const sellTicket = event => ({
 export const addTicket = (data) => (dispatch, getState) => {
     console.log('addticket action data',data)
     const state = getState();
+    console.log(state, "add ticket state")
     const jwt = state.currentUser.jwt;
   
     if (isExpired(jwt)) return dispatch(logout())
   
     request
-      .post(`${baseUrl}/events/${data.eventId}/tickets`)
+      .post(`${baseUrl}/events/${state.event.id}/tickets`)
       .set('Authorization', `Bearer ${jwt}`)
       .send(data)
       .then(res => {

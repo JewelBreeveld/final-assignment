@@ -11,7 +11,7 @@ export default class EventController {
         const event = await Event.find({ //where: {userId: "Saw"},
                                         order: {startDate: "ASC"},
                                         skip: 0, 
-                                        take:9,
+                                        take:900,
                                         })
         //const today = new Date().toISOString().split('T')[0]
         return { event }
