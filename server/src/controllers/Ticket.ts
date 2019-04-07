@@ -95,7 +95,7 @@ export default class TicketController {
             ticket.price
         )
 
-        const allDetails = {...ticket, calculateRisk, eventId, ticketId, userId}
+        const allDetails = {...ticket, calculateRisk, avgPrice, eventId, ticketId, userId}
         
         return allDetails
 

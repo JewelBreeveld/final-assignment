@@ -14,9 +14,10 @@ export default function CommentList(props) {
                     <Typography>Tickets for {event.name} on {event.startDate}</Typography>  
                 </Card>
                 <Card className='ticket-details-card'>
-                    <Typography>{ticket.description}</Typography>
-                    <Typography>€ {ticket.price}</Typography>
-                    <Typography>Average price </Typography> 
+                    <Typography>Description: {ticket.description}</Typography>
+                    <Typography>Price: € {ticket.price}</Typography>
+                    <Typography>Risk: {ticket.calculateRisk}</Typography>
+                    <Typography>Average price: € {Math.floor(ticket.avgPrice.average)} </Typography> 
                     {event.user.id === props.userId 
                                         ? 
                                         <Fab    variant="extended"
