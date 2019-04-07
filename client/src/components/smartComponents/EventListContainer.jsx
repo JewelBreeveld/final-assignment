@@ -18,6 +18,14 @@ class EventsListContainer extends PureComponent {
         this.props.getUser(this.props.userId)
     }
 
+    componentDidUpdate() {
+
+    }
+
+    onClick = () => {
+        this.props.getEvents()
+    }
+
     render() {
     console.log('eventlistcontainer props', this.props)
     
@@ -36,6 +44,7 @@ class EventsListContainer extends PureComponent {
                                     style={{margin: 20}} 
                                     className='create-new-event' 
                                     component={Link} 
+                                    onClick={this.onClick}
                                     to={`/events/create`}>
                                     Create new Event
                     </Fab>

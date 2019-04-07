@@ -26,7 +26,7 @@ export default class Ticket extends BaseEntity {
 
     @Exclude()
     @UpdateDateColumn({ type: "timestamp" })
-    updatedOn: Date;
+    updatedOn: Date
 
     @ManyToOne(_ => User, user => user.tickets, {eager: true})
     user: User
@@ -37,6 +37,6 @@ export default class Ticket extends BaseEntity {
     @ManyToOne(_=> Event, event => event.tickets, {nullable: false})
     event: Event
 
-    @Column('integer', {nullable: true})
-    risk: number
+    // @Column('integer', {nullable: true})
+    // risk: number
 }

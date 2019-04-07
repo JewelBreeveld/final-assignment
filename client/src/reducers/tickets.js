@@ -9,9 +9,6 @@ export default (state = null, {type, payload}) => {
             [payload.tickets]: payload
         }
 
-        case SELL_TICKET: 
-        return payload
-
         case GET_TICKET: 
         console.log('payload get ticket', payload )
         return payload

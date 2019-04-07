@@ -32,7 +32,8 @@ class TicketFormContainer extends PureComponent {
           formValues: this.state.formValues
       })
       this.props.addTicket(this.state.formValues)
-      this.props.updateEvent(this.props.event.id)
+      console.log(this.props.event.id, 'on submit tfcont.')
+      this.props.getEvent(this.props.event.id)
     }
 
     onEdit = () => {
@@ -47,10 +48,6 @@ class TicketFormContainer extends PureComponent {
         }
       })
     }
-
-    // onClick () {
-    //   window.location.href=window.location.href
-    // }
 
     render() {
       console.log('ticketformcontainer', this.props)
