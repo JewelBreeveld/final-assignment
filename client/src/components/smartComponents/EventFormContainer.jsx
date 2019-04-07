@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addEvent } from '../../actions/events'
+import { addEvent, getEvent } from '../../actions/events'
 import EventForm from '../funcComponents/EventForm'
 
 class EventFormContainer extends React.Component { // eventz CreateEventFormContainer.js
@@ -29,6 +29,7 @@ class EventFormContainer extends React.Component { // eventz CreateEventFormCont
         formValues: this.state.formValues
     })
     this.props.addEvent(this.state.formValues)
+    // this.props.getEvent()
     this.props.history.push('/events')
   }
 
@@ -45,4 +46,4 @@ class EventFormContainer extends React.Component { // eventz CreateEventFormCont
   }
 }
 
-export default connect(null, { addEvent })(EventFormContainer)
+export default connect(null, { addEvent, getEvent })(EventFormContainer)
