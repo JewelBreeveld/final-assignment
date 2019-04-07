@@ -24,7 +24,8 @@ export default function TicketList(props) {
                     <Typography style={{margin: 20}}> Enddate: {event.endDate} </Typography>
                 </Card >
                 <div >
-                    {event.tickets.map(ticket => {
+                    { event.tickets 
+                    ? event.tickets.map(ticket => {
                         return  <Card key={ticket.id}>
                                     <Avatar src={ticket.picture} style={{margin: 15}}></Avatar>
                                     <Typography style={{margin: 10}}>Seller: {ticket.user.firstName} </Typography>
@@ -51,7 +52,8 @@ export default function TicketList(props) {
                                         </Fab>
                                         : null } */}
                                 </Card>
-                    })} 
+                    })
+                : null } 
         </div>
     </div>
     )

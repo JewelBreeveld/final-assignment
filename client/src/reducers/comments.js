@@ -6,7 +6,7 @@ export default (state = null, {type, payload}) => {
         case ADD_COMMENT: 
         console.log('payload 1 comment',payload)
         //console.log('comment payload', payload.user)
-        return payload
+            return [...state, payload]
 
         case UPDATE_COMMENTS:
         console.log("payload all comments", payload)
