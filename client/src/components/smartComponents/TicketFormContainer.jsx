@@ -5,6 +5,7 @@ import { getEvent } from '../../actions/events'
 import TicketForm from '../funcComponents/TicketForm'
 
 
+
 class TicketFormContainer extends PureComponent {
     state = {
       formValues: {

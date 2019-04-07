@@ -7,7 +7,7 @@ export default function CommentForm(props) {
     console.log('commentform', props)
 
     return(<div className="add-comment-form">
-        <Card onSubmit={props.onSubmit}> 
+        <Card onSubmit={props.onSubmit} className='outer-card'> 
             <TextField type="text" placeholder="comment" name="comment"  style={{margin: 10}} onChange={props.onChange}/>
             
             <Fab type="submit" onClick={props.onSubmit} 

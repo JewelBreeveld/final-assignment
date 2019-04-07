@@ -16,9 +16,9 @@ export default function TicketList(props) {
 
     if(!event.tickets) return 'Loading ...'
     return (<div>
-                <Card className='event-details-div'>
+                <Card className='event-details-card'>
                     <img src={event.urlPictureLogo} style={{margin: 20}} alt='logo' className='image'/>
-                    <Typography style={{margin: 10}}>{event.name}</Typography>
+                    <Typography style={{margin: 20}}>{event.name}</Typography>
                     <Typography style={{margin: 20}}> Description: {event.description} </Typography>
                     <Typography style={{margin: 20}}> Startdate: {event.startDate} </Typography>
                     <Typography style={{margin: 20}}> Enddate: {event.endDate} </Typography>
@@ -26,7 +26,7 @@ export default function TicketList(props) {
                 <div >
                     { event.tickets 
                     ? event.tickets.map(ticket => {
-                        return  <Card key={ticket.id}>
+                        return  <Card key={ticket.id} className='event-list-card'>
                                     <Avatar src={ticket.picture} style={{margin: 15}}></Avatar>
                                     <Typography style={{margin: 10}}>Seller: {ticket.user.firstName} </Typography>
                                     <Typography style={{margin: 10}}>Price: € {ticket.price}</Typography>

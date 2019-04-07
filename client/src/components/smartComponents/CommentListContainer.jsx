@@ -77,7 +77,7 @@ class CommentListContainer extends PureComponent {
         const { event, ticket, comments, currentUser, userId } = this.props
 
         return (<Paper> 
-                <Card>
+                <Card  className='outer-card'>
                 CommentListContainer
                 </Card>
                     {currentUser
@@ -88,7 +88,7 @@ class CommentListContainer extends PureComponent {
                                         ticket={ticket}
                                         onSubmit={this.onSubmit}/>
                         </Paper>  
-                    : 'Log in to add a comment'}
+                    : <Card className='outer-card'>Log in to add a comment</Card>}
                     {this.state.editMode ? <TicketForm onChange={this.onChange} 
                                                         values={this.state.formValues}
                                                         event={event}
@@ -96,9 +96,9 @@ class CommentListContainer extends PureComponent {
                                                         onSubmit={this.onSubmitChange}
                                                         /> 
                                                         : null}
-                    <Paper>
+                    
                         <CommentList event={event} ticket={ticket} comments={comments} userId={userId} editTicket={this.triggerEditTicketState}/>
-                    </Paper>
+                    
             </Paper>)
     }
     }

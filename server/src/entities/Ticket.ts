@@ -3,6 +3,7 @@ import { Exclude } from "class-transformer";
 import User from './User';
 import Comment from './Comment'
 import Event from './Event'
+//import TicketController from '../controllers/Ticket'
 
 @Entity()
 export default class Ticket extends BaseEntity {
