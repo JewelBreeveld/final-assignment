@@ -24,7 +24,7 @@ export default function EventList(props) {
                                             style={{margin: 10}} 
                                             size='small'
                                             className='view-tickets' 
-                                            onClick={()=> getEvent(event.id)}
+                                            onClick={props.onClick}
                                             component={Link} 
                                             to={`/events/${event.id}/tickets`}>
                                             Find tickets

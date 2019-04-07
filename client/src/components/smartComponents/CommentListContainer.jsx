@@ -69,7 +69,9 @@ class CommentListContainer extends PureComponent {
         })
     console.log(this.state.formValues, 'this.state.formValues onSubmitChange')
     this.props.sendChangedTicket(this.state.formValues)
-    this.props.history.push(`/events/${this.props.event.id}/tickets/${this.props.ticket.id}`)
+    console.log('test', this.props.event.id, this.props.ticket.id)
+    this.props.getTicket(this.props.event.id, this.props.ticket.id)
+    //this.props.history.push(`/events/${this.props.event.id}/tickets/${this.props.ticket.id}`)
     }
 
     render() {

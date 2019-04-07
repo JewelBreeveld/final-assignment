@@ -13,10 +13,10 @@ export default function TicketList(props) {
     const { event } = props 
 
     console.log('ticketslist props', props)
-    if(!event) {
-        const event = getEvent(props.event.id)
-        return event
-    }
+    // if(!event) {
+    //     const event = getEvent(props.event.id)
+    //     return event
+    // }
     return (<div>
                 <Card className='event-details-card'>
                     <img src={event.urlPictureLogo} style={{margin: 20}} alt='logo' className='image'/>
