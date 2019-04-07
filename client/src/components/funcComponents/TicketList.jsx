@@ -5,6 +5,7 @@ import Fab from '@material-ui/core/Fab'
 import { Link } from 'react-router-dom'
 import '../../styles/Event.css'
 import { Avatar } from '@material-ui/core';
+import { getEvent } from '../../actions/events'
 //import { userId } from '../../jwt';
 
 export default function TicketList(props) {
@@ -12,9 +13,10 @@ export default function TicketList(props) {
     const { event } = props 
 
     console.log('ticketslist props', props)
-    //console.log('ticketslist props userId', userId)
-
-    if(!event.tickets) return 'Loading ...'
+    if(!event) {
+        const event = getEvent(props.event.id)
+        return event
+    }
     return (<div>
                 <Card className='event-details-card'>
                     <img src={event.urlPictureLogo} style={{margin: 20}} alt='logo' className='image'/>
@@ -22,10 +24,10 @@ export default function TicketList(props) {
                     <Typography style={{margin: 20}}> Description: {event.description} </Typography>
                     <Typography style={{margin: 20}}> Startdate: {event.startDate} </Typography>
                     <Typography style={{margin: 20}}> Enddate: {event.endDate} </Typography>
+                    
                 </Card >
                 <div >
-                    { event.tickets 
-                    ? event.tickets.map(ticket => {
+                    { event.tickets.map(ticket => {
                         return  <Card key={ticket.id} className='event-list-card'>
                                     <Avatar src={ticket.picture} style={{margin: 15}}></Avatar>
                                     <Typography style={{margin: 10}}>Seller: {ticket.user.firstName} </Typography>
@@ -39,21 +41,9 @@ export default function TicketList(props) {
                                             to={`/events/${event.id}/tickets/${ticket.id}`}
                                             >
                                     More details</Fab>
-                                    {/* {event.user.id === props.userId 
-                                        ? 
-                                        <Fab    variant="extended"
-                                                style={{margin: 10}} 
-                                                size='small'
-                                                className='view-tickets' 
-                                                //onClick={() => this.setState({eventToEdit: Card.key})}
-                                                component={Link} 
-                                                to={`/events/${event.id}/tickets/${ticket.id}/edit`}>
-                                                Edit ticket
-                                        </Fab>
-                                        : null } */}
                                 </Card>
                     })
-                : null } 
+             } 
         </div>
     </div>
     )

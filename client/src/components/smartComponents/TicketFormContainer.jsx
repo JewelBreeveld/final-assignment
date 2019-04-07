@@ -32,6 +32,7 @@ class TicketFormContainer extends PureComponent {
           formValues: this.state.formValues
       })
       this.props.addTicket(this.state.formValues)
+      this.props.updateEvent(this.props.event.id)
     }
 
     onEdit = () => {

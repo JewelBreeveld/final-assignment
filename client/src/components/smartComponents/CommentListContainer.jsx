@@ -57,6 +57,7 @@ class CommentListContainer extends PureComponent {
     })
     console.log(this.state.formValues, 'this.state.formvalues')
     this.props.sendComment(this.state.formValues)
+    this.props.getTicket(this.props.event.id, this.props.ticket.id)
     this.props.history.push(`/events/${this.props.event.id}/tickets/${this.props.ticket.id}`)
     }
 
@@ -89,6 +90,7 @@ class CommentListContainer extends PureComponent {
                                         onSubmit={this.onSubmit}/>
                         </Paper>  
                     : <Card className='outer-card'>Log in to add a comment</Card>}
+                    
                     {this.state.editMode ? <TicketForm onChange={this.onChange} 
                                                         values={this.state.formValues}
                                                         event={event}

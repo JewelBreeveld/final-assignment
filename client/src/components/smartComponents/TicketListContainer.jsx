@@ -11,10 +11,14 @@ import Card from '@material-ui/core/Card'
 
 class TicketListContainer extends PureComponent {
 
+    state = {
+        editMode: false
+    }
+
     componentDidMount() {
         const eventId = this.props.match.params.id
         this.props.getEvent(Number(eventId))
-        this.props.getEvents()
+        //this.props.getEvents()
         this.props.getUser(Number(this.props.userId))
 
     }
@@ -50,3 +54,6 @@ const mapStateToProps = state => ({
 
 
 export default connect(mapStateToProps, {getEvent, getEvents, getUsers, getUser, getTicket})(TicketListContainer)
+
+
+//import EventForm from '../funcComponents/EventForm'

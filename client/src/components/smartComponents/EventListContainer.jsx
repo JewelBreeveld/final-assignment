@@ -9,7 +9,6 @@ import '../../styles/Event.css'
 import Fab from '@material-ui/core/Fab'
 import { Link } from 'react-router-dom'
 import Card from '@material-ui/core/Card'
-//import EventForm from '../funcComponents/EventForm'
 
 class EventsListContainer extends PureComponent {
 
@@ -19,13 +18,6 @@ class EventsListContainer extends PureComponent {
         this.props.getUser(this.props.userId)
     }
 
-
-    onClick = () => {
-        const event =  this.props.getEvent(this.Card.key)
-        console.log('get event klik', event)
-    }
-
-
     render() {
     console.log('eventlistcontainer props', this.props)
     
@@ -33,7 +25,10 @@ class EventsListContainer extends PureComponent {
 
     if(!events) return 'Loading...'
         return (
-            <Paper className='outer-paper'> EventsListContainer
+            <Paper> 
+            <Card  className='outer-card'>
+                EventsListContainer
+            </Card> 
                 <Card className='outer-card'>
                     {!currentUser ? Fab.disabled=true && 'Log in to create an event' : 
                     <Fab variant="extended" 
